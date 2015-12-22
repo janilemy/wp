@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WeeklyPlaner.Models.FavouriteItem>
+
+@{
+    ViewBag.Title = "Priljubljeni izdelki";
+}
+
+<h2>Priljubljeni izdelki</h2>
+
+<p>
+    @Html.ActionLink("Vnesi priljubljen izdelek", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Item)
+        </th>        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.ItemName)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Podrobno", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

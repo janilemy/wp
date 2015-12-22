@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<WeeklyPlaner.Models.Item>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Seznam izdelkov";
+}
+
+<h2>Seznam izdelkov</h2>
+
+<p>
+    @Html.ActionLink("Vnesi izdelek", "Create")
+</p>
+
+<!-- Search by item name -> FormMethod Get is used instead of post, becase we have query string in url, you should use GET when te action does not result in an update -->
+@using (Html.BeginForm("Index", "Items", FormMethod.Get))
+{
+    <p>
+        Iskanje: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Išči" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            <!-- Action link for sorting the item by category, currentFilter is added so we pass the filter after pageing is used -->
+            @Html.ActionLink("Kategorija", "Index", new { sortOrder = ViewBag.CategorySortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            <!-- Action link for sorting the item by name -->
+            @Html.ActionLink("Ime", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemCategory.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>           
+            <td>
+                @Html.ActionLink("Uredi", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Podrobno", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<!-- Show the data about wich page you are current on and total of pages -->
+Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
+
+<!-- actual pagin system - pager -->
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

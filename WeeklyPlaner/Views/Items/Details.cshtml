@@ -1,0 +1,33 @@
+﻿@model WeeklyPlaner.Models.Item
+
+@{
+    ViewBag.Title = "Podrobni pregled";
+}
+
+<h2>Podrobni pregled</h2>
+
+<div>
+    <h4>Izdelek</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemCategory.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemCategory.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Nazaj na seznam", "Index")
+</p>

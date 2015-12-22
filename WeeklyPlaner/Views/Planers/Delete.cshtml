@@ -1,0 +1,32 @@
+﻿@model WeeklyPlaner.Models.Planer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Izbriši</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Planer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanedOn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Nazaj na seznam", "Index")
+        </div>
+    }
+</div>

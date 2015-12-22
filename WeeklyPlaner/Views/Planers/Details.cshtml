@@ -1,0 +1,26 @@
+﻿@model WeeklyPlaner.Models.Planer
+
+@{
+    ViewBag.Title = "Podrobni pregled";
+}
+
+<h2>Podrobni pregled</h2>
+
+<div>
+    <h4>Planer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanedOn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Nazaj na seznam", "Index")
+</p>

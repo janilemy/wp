@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WeeklyPlaner.Models.Planer>
+
+@{
+    ViewBag.Title = "Tedenski pregled";
+}
+
+<h2>Tedenski pregled</h2>
+
+<p>
+    @Html.ActionLink("Vnesi tedenski pregled", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="jumbotron box">
+        <h4>@Html.DisplayFor(mealItem => item.PlanedOn)</h4>
+        @foreach (var meal in item.PlanerMeals)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="http://sp24testing.azurewebsites.net/Content/Images/recipes/default/small/13996.jpg" alt="recipe" class="img-responsive" />
+                    <h4>@Html.DisplayFor(mealItem => meal.Meal.Title)</h4>
+                </div>
+            </div>
+        }
+    </div>
+}

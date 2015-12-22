@@ -1,0 +1,40 @@
+﻿@model WeeklyPlaner.Models.Item
+
+@{
+    ViewBag.Title = "Izbriši izdelek";
+}
+
+<h2>Izbriši izdelek</h2>
+<p class="error">@ViewBag.ErrorMessage</p>
+    <h3>Ali ste prepričani da želite izbrisati izdelek?</h3>
+    <div>
+        <h4>Izdelek</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemCategory.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ItemCategory.Category)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ItemName)
+            </dd>  
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Nazaj na seznam", "Index")
+            </div>
+        }
+    </div>
