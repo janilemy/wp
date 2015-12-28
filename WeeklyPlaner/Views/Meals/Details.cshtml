@@ -1,42 +1,54 @@
 ﻿@model WeeklyPlaner.Models.Meal
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Obrok";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Meal</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MealAdditionalInfo.MealId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MealAdditionalInfo.MealId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<section id="meal">
+    <div class="box">
+        <section id="header">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="http://sp24testing.azurewebsites.net/Content/images/recipes/default/small/11811.jpg" alt="obrok" class="img-responsive">
+                </div>
+                <div class="col-md-8">
+                    <h4>@Html.DisplayFor(model => model.Title)</h4>
+                </div>
+            </div>
+        </section>
+        <section id="content">
+            <hr class="line silver" />
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Sestavine</h4>
+                    <table class="table borderless">
+                        @foreach (var item in Model.MealItem)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(mealItem => item.Quantity)
+                                    @Html.DisplayFor(mealItem => item.Unit.Title)
+                                    @Html.DisplayFor(mealItem => item.Ingredient.ItemName)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <hr class="line silver" />
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Energijska vrednost</h4>
+                    @Html.DisplayFor(model => model.MealAdditionalInfo.Calories) kalorij
+                </div>
+            </div>            
+        </section>
+        <section id="footer">
+            <p>
+                @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }) |
+                @Html.ActionLink("Nazaj na seznam", "Index")
+            </p>
+        </section>
+    </div>
+</section>

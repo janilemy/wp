@@ -45,7 +45,7 @@ namespace WeeklyPlaner.Controllers
 
         // GET: Meals/Create
         public ActionResult Create()
-        {            
+        {
             var mealViewModel = new MealViewModel { Courses = PopulateMealCourseData() };
 
             return View(mealViewModel);
@@ -67,7 +67,7 @@ namespace WeeklyPlaner.Controllers
 
                 return RedirectToAction("Index");
             }
-            
+
             return View(mealViewModel);
         }
 
@@ -76,14 +76,33 @@ namespace WeeklyPlaner.Controllers
             var courses = unitOfWork.CourseRepository.Get().ToList();
             var assignedCourses = new List<MealAssignedCourseData>();
 
-            foreach(var item in courses)
+            foreach (var item in courses)
             {
                 assignedCourses.Add(new MealAssignedCourseData
                     {
-                        CourseID = item.ID,   
+                        CourseID = item.ID,
                         Title = item.Title,
                         Assigned = false
                     });
+            }
+
+            return assignedCourses;
+        }
+
+        private ICollection<MealAssignedCourseData> PopulateMealAssignedCourseData(Meal meal)
+        {
+            var allCourses = unitOfWork.CourseRepository.Get();
+            var mealCourses = new HashSet<int>(meal.Courses.Select(c => c.ID));            
+            var assignedCourses = new List<MealAssignedCourseData>();
+
+            foreach (var item in allCourses)
+            {
+                assignedCourses.Add(new MealAssignedCourseData
+                {
+                    CourseID = item.ID,
+                    Title = item.Title,
+                    Assigned = mealCourses.Contains(item.ID)
+                });
             }
 
             return assignedCourses;
@@ -97,12 +116,15 @@ namespace WeeklyPlaner.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Meal meal = unitOfWork.MealRepository.GetByID(id);
+
+            var mealViewModel = new MealViewModel { ID = meal.ID, Title = meal.Title, Courses = PopulateMealAssignedCourseData(meal) };
+
             if (meal == null)
             {
                 return HttpNotFound();
-            }
-            ViewBag.ID = new SelectList(unitOfWork.MealRepository.context.MealAdditionalInfo, "MealId", "MealId", meal.ID);
-            return View(meal);
+            }            
+
+            return View(mealViewModel);
         }
 
         // POST: Meals/Edit/5
@@ -110,15 +132,22 @@ namespace WeeklyPlaner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,Title")] Meal meal)
+        public ActionResult Edit(MealViewModel mealViewModel)
         {
+            var meal = unitOfWork.MealRepository.GetByID(mealViewModel.ID);
+
             if (ModelState.IsValid)
-            {
+            {                                
                 unitOfWork.MealRepository.Update(meal);
+
+                unitOfWork.MealRepository.AddOrUpdateMealCourses(meal, mealViewModel.Courses);
+
                 return RedirectToAction("Index");
             }
-            ViewBag.ID = new SelectList(unitOfWork.MealRepository.context.MealAdditionalInfo, "MealId", "MealId", meal.ID);
-            return View(meal);
+
+            PopulateMealAssignedCourseData(meal);
+
+            return View(mealViewModel);
         }
 
         // GET: Meals/Delete/5
@@ -144,7 +173,7 @@ namespace WeeklyPlaner.Controllers
             Meal meal = unitOfWork.MealRepository.GetByID(id);
             unitOfWork.MealRepository.Delete(meal);
             return RedirectToAction("Index");
-        }
+        }        
 
         // POST: Meals/UpdateMealCalories
         public ActionResult UpdateMealCalories(int mealId, int calories)

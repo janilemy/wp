@@ -31,10 +31,37 @@ h1, h2,h3,h4,h5,h6
 
 .box
 {
-	border-style: solid;
-    border-width: 1px;
-    border-color: #e6e6e6;
+	border: 1px solid #e6e6e6;
     box-shadow: 0 2px 2px #AAA;	
 	padding: 10px;
 	margin: 20px 0;
+}
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+/* Meal */
+#meal
+{
+	max-width: 800px;
+	width: 100%;
+}
+
+#meal .box > section
+{
+	margin: 20px;
+}
+
+.line
+{	
+	border-width: 1px;
+	border-style: solid;
+	margin: 0;
+	padding: 0;
+}
+
+.silver
+{
+	border-color: #e6e6e6;
 }
