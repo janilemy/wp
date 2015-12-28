@@ -130,6 +130,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\MealsController.cs" />
+    <Compile Include="DAL\Repositories\GenericRepository.cs" />
+    <Compile Include="DAL\Repositories\MealRepository.cs" />
+    <Compile Include="DAL\Repositories\UnitOfWork.cs" />
     <Compile Include="DAL\WeeklyPlanerContext.cs" />
     <Compile Include="DAL\WeeklyPlanerInitializer.cs" />
     <Compile Include="DAL\WeeklyPlanerInterceptorLogging.cs" />
@@ -147,6 +151,10 @@
     <Compile Include="Migrations\201512120040579_Initial.cs" />
     <Compile Include="Migrations\201512120040579_Initial.Designer.cs">
       <DependentUpon>201512120040579_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512281625189_AddMealCourse.cs" />
+    <Compile Include="Migrations\201512281625189_AddMealCourse.Designer.cs">
+      <DependentUpon>201512281625189_AddMealCourse.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Item.cs" />
@@ -180,6 +188,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.sl.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MealViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -196,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512120040579_Initial.resx">
       <DependentUpon>201512120040579_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512281625189_AddMealCourse.resx">
+      <DependentUpon>201512281625189_AddMealCourse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Home\Home.sl.resx" />
     <EmbeddedResource Include="Resources\Views\Items\Items.sl.resx">
@@ -252,6 +264,12 @@
     <Content Include="Views\FavouriteItems\Details.cshtml" />
     <Content Include="Views\FavouriteItems\Edit.cshtml" />
     <Content Include="Views\FavouriteItems\Index.cshtml" />
+    <Content Include="Views\Meals\Create.cshtml" />
+    <Content Include="Views\Meals\Delete.cshtml" />
+    <Content Include="Views\Meals\Details.cshtml" />
+    <Content Include="Views\Meals\Edit.cshtml" />
+    <Content Include="Views\Meals\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MealAssignedCourseData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 namespace WeeklyPlaner.Models
-{
+{    
     /// <summary>
     ///  Class for all items
     /// </summary>

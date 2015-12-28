@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WeeklyPlaner.Models.Meal>
+
+@{
+    ViewBag.Title = "Seznam obrokov";
+}
+
+<h2>Seznam obrokov</h2>
+
+<p>
+    @Html.ActionLink("Vnesi obrok", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                Obrok
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MealAdditionalInfo.Calories)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @String.Join(", ", item.Courses.Select(c => c.Title).ToArray())
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealAdditionalInfo.Calories)
+                </td>
+                <td>
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Podrobno", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

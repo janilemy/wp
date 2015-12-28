@@ -20,7 +20,7 @@ namespace WeeklyPlaner.DAL
         public DbSet<FavouriteItem> FavouriteItem { get; set; }
         public DbSet<Unit> Unit { get; set; }
         public DbSet<UnitType> UnitType { get; set; }
-        public DbSet<Meal> Meal { get; set; }
+        public DbSet<Meal> Meal { get; set; }        
         public DbSet<MealItem> MealItem { get; set; }
         public DbSet<MealAdditionalInfo> MealAdditionalInfo { get; set; }        
         public DbSet<Planer> Planer { get; set; }

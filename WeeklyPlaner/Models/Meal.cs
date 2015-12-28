@@ -18,28 +18,22 @@ namespace WeeklyPlaner.Models
         [Display(Name = "Obrok")]
         public string Title { get; set; }
 
-        public virtual ICollection<MealItem> MealItem { get; set; }
+        public Meal()
+        {
+            Courses = new List<Course>();
+        }
+
+        public virtual ICollection<Course> Courses { get; set; }
         public virtual MealAdditionalInfo MealAdditionalInfo { get; set; }
+        public virtual ICollection<MealItem> MealItem { get; set; }        
         public virtual ICollection<Planer> Planer { get; set; }
     }
 
-    // Class for meal ingredients
-    public class MealItem
+    public class MealAssignedCourseData
     {
-        public int ID { get; set; }
-        [Display(Name = "Obrok")]
-        public int MealId { get; set; }
-        [Display(Name = "Sestavina")]
-        public int IngredientId { get; set; }
-
-        [Display(Name = "Enota")]
-        public int UnitId { get; set; }
-        [Display(Name = "Količina")]
-        public double Quantity { get; set; }
-
-        public virtual Meal Meal { get; set; }
-        public virtual Unit Unit { get; set; }
-        public virtual Ingredient Ingredient { get; set; }        
+        public int CourseID { get; set; }
+        public string Title { get; set; }
+        public bool Assigned { get; set; }
     }
 
     public class MealAdditionalInfo
@@ -62,4 +56,25 @@ namespace WeeklyPlaner.Models
 
         public virtual Meal Meal { get; set; }
     }
+
+    // Class for meal ingredients
+    public class MealItem
+    {
+        public int ID { get; set; }
+        [Display(Name = "Obrok")]
+        public int MealId { get; set; }
+        [Display(Name = "Sestavina")]
+        public int IngredientId { get; set; }
+
+        [Display(Name = "Enota")]
+        public int UnitId { get; set; }
+        [Display(Name = "Količina")]
+        public double Quantity { get; set; }
+
+        public virtual Meal Meal { get; set; }
+        public virtual Unit Unit { get; set; }
+        public virtual Ingredient Ingredient { get; set; }        
+    }
+
+    
 }

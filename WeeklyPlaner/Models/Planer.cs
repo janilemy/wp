@@ -38,5 +38,6 @@ namespace WeeklyPlaner.Models
         public string Title { get; set; }
 
         public ICollection<Planer> Planer { get; set; }
+        public ICollection<Meal> Meal { get; set; }
     }
 }

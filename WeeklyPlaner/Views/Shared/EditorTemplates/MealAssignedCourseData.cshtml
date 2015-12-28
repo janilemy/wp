@@ -1,0 +1,8 @@
+﻿@model WeeklyPlaner.Models.MealAssignedCourseData
+@using WeeklyPlaner.ViewModels
+
+<fieldset>
+    @Html.HiddenFor(model => model.CourseID)
+    @Html.CheckBoxFor(model => model.Assigned)
+    @Html.DisplayFor(model => model.Title)
+</fieldset>
