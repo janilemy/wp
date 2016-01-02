@@ -49,5 +49,11 @@ namespace WeeklyPlaner.DAL.Repositories
             meal.MealAdditionalInfo.Calories = calories;
             context.SaveChanges();
         }
+
+        internal void InsertMealItems(List<MealItem> mealItems)
+        {
+            mealItems.ForEach(item => context.MealItem.Add(item));
+            context.SaveChanges();
+        }
     }
 }

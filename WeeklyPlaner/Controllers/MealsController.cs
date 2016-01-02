@@ -54,8 +54,7 @@ namespace WeeklyPlaner.Controllers
         // POST: Meals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Create(MealViewModel mealViewModel)
         {
             if (ModelState.IsValid)
@@ -64,6 +63,7 @@ namespace WeeklyPlaner.Controllers
 
                 unitOfWork.MealRepository.AddOrUpdateMealCourses(meal, mealViewModel.Courses);
                 unitOfWork.MealRepository.Insert(meal);
+                unitOfWork.MealRepository.InsertMealItems(mealViewModel.MealItems);
 
                 return RedirectToAction("Index");
             }

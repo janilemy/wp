@@ -10,8 +10,11 @@ namespace WeeklyPlaner.ViewModels
     {
         public int ID { get; set; }
         public string Title { get; set; }
+
+        public List<MealItem> MealItems { get; set; }
+
         //public virtual MealAdditionalInfo MealAdditionalInfo { get; set; }
-        public virtual ICollection<MealAssignedCourseData> Courses { get; set; }
+        public virtual ICollection<MealAssignedCourseData> Courses { get; set; }        
     }
 
     public class MealAssignedCourseData

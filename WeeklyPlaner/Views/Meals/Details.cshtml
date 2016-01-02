@@ -5,50 +5,106 @@
 }
 
 
-<section id="meal">
-    <div class="box">
-        <section id="header">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="http://sp24testing.azurewebsites.net/Content/images/recipes/default/small/11811.jpg" alt="obrok" class="img-responsive">
+<div class="row">
+    <div class="col-md-8">
+        <div class="box">
+            <section id="header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="http://sp24testing.azurewebsites.net/Content/images/recipes/default/small/11811.jpg" alt="obrok" class="img-responsive">
+                    </div>
+                    <div class="col-md-8">
+                        <h4>@Html.DisplayFor(model => model.Title)</h4>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <h4>@Html.DisplayFor(model => model.Title)</h4>
-                </div>
-            </div>
-        </section>
-        <section id="content">
-            <hr class="line silver" />
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Sestavine</h4>
-                    <table class="table borderless">
-                        @foreach (var item in Model.MealItem)
-                        {
-                            <tr>
-                                <td>
+            </section>
+            <section id="content">
+                <hr class="line silver" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Sestavine</h4>
+                        <div class="row">
+                            @foreach (var item in Model.MealItem)
+                            {
+                                <div class="col-md-2">
                                     @Html.DisplayFor(mealItem => item.Quantity)
-                                    @Html.DisplayFor(mealItem => item.Unit.Title)
+                                    @Html.DisplayFor(mealItem => item.Unit.Symbol)
+                                </div>
+                                <div class="col-md-10">
                                     @Html.DisplayFor(mealItem => item.Ingredient.ItemName)
-                                </td>
-                            </tr>
-                        }
-                    </table>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <hr class="line silver" />
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Energijska vrednost</h4>
-                    @Html.DisplayFor(model => model.MealAdditionalInfo.Calories) kalorij
-                </div>
-            </div>            
-        </section>
-        <section id="footer">
-            <p>
-                @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }) |
-                @Html.ActionLink("Nazaj na seznam", "Index")
-            </p>
-        </section>
+            </section>
+            <section id="footer">
+                <p>
+                    @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }) |
+                    @Html.ActionLink("Nazaj na seznam", "Index")
+                </p>
+            </section>
+        </div>
     </div>
-</section>
+    <div class="col-md-4">
+        <div class="box">
+            <section class="nutrition_values">
+                <header>
+                    <h1 class="title">Kalorijske vrednosti</h1>
+                </header>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th colspan="3" style="border: none;">
+                                <b>Kalorij</b>
+                                @Html.DisplayFor(model => model.MealAdditionalInfo.Calories)
+                            </th>
+                        </tr>
+                        <tr class="thick-row">
+                            <td colspan="3" class="small-text">
+                                <b>% Dnevna vrednost*</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <b>Maščob</b>
+                                @Html.DisplayFor(model => model.MealAdditionalInfo.Fats) g
+                            </th>
+                            <td>
+                                <b>22%</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <b>Ogljikovi hidrati</b>
+                                @Html.DisplayFor(model => model.MealAdditionalInfo.CarbonHidrates) g
+                            </th>
+                            <td>
+                                <b>6%</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <b>Vlaknine</b>
+                                @Html.DisplayFor(model => model.MealAdditionalInfo.Fibers) g
+                            </th>
+                            <td>
+                                <b>4%</b>
+                            </td>
+                        </tr>
+                        <tr class="thick-end">
+                            <th colspan="2">
+                                <b>Proteini</b>
+                                @Html.DisplayFor(model => model.MealAdditionalInfo.Protein) g
+                            </th>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <footer>
+                    <p class="small-text">* Vrednosti v procentih temeljijo na dieti z 2000 kalorijami dnevno. Vaše dnevne vrednosti se lahko razlikujejo glede na vaš vnos dnevnih kalorij:</p>
+                </footer>
+            </section>
+        </div>
+    </div>
+</div>

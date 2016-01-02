@@ -1,67 +1,296 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+	padding-top: 50px;
+	padding-bottom: 20px;
 	background-color: #f6f6f6;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+	white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+	max-width: 280px;
 }
 
-h1, h2,h3,h4,h5,h6
-{
+h1, h2, h3, h4, h5, h6 {
 	font-family: "Unica One", "Myriad Pro", Arial, sans-serif;
 }
 
-.box
-{
+.box {
 	border: 1px solid #e6e6e6;
-    box-shadow: 0 2px 2px #AAA;	
+	box-shadow: 0 2px 2px #AAA;
 	padding: 10px;
 	margin: 20px 0;
 }
 
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
-    border: none;
+	border: none;
 }
 
 /* Meal */
-#meal
-{
-	max-width: 800px;
-	width: 100%;
+section {
+	margin: 0 10px 20px 10px;
 }
 
-#meal .box > section
-{
-	margin: 20px;
-}
-
-.line
-{	
+.line {
 	border-width: 1px;
 	border-style: solid;
 	margin: 0;
 	padding: 0;
 }
 
-.silver
-{
+.silver {
 	border-color: #e6e6e6;
 }
+
+/* Nutrition values table */
+.nutrition_values {
+}
+
+.nutrition_values table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.nutrition_values header .title {
+	font-weight: bold;
+	font-size: 20px;
+	margin: 0 0 4px 0;
+}
+
+.nutrition_values header {
+	border-bottom: 10px solid #333;
+	padding: 0 0 4px 0;
+	margin: 0 0 8px 0;
+}
+
+.nutrition_values header p {
+	margin: 0;
+}
+
+.nutrition_values table thead tr th,
+.nutrition_values table thead tr td {
+	border: 0;
+}
+
+.nutrition_values table th,
+.nutrition_values table td {
+	font-weight: normal;
+	text-align: left;
+	padding: 4px 0;
+	border-top: 1px solid #333;
+	white-space: nowrap;
+}
+
+.nutrition_values table td:last-child {
+	text-align: right;
+}
+
+.nutrition_values table .blank-cell {
+	width: 16px;
+	border-top: 0;
+}
+
+.nutrition_values table .thick-row th,
+.nutrition_values .small .thick-row th,
+.nutrition_values table .thick-row td,
+.nutrition_values .small .thick-row td {
+	border-top-width: 5px;
+}
+
+.small-text {
+	font-size: 12px;
+}
+
+.nutrition_values .small {
+	border-bottom: 1px solid #999;
+	margin: 0 0 8px 0;
+}
+
+.nutrition_values .small thead tr {
+	border-bottom: 1px solid #333;
+}
+
+.nutrition_values .small td:last-child {
+	text-align: left;
+}
+
+.nutrition_values .small th,
+.nutrition_values .small td {
+	border: 0;
+	padding: 0;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.thick-end {
+	border-bottom: 10px solid #333;
+}
+
+.thin-end {
+	border-bottom: 1px solid #333;
+}
+
+.nutrition_values footer p {
+	margin-top: 10px;
+}
+
+/**************************************************************************************** 
+AUTOCOMPLETE 
+*****************************************************************************************/
+.ui-widget-overlay
+{
+    position: fixed;
+	top: 0;
+	left: 0;
+	/* width: 100%;
+	height: 100%; */
+}
+.ui-autocomplete
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: default;
+
+	/* added */
+    border-radius: 4px;
+    border: 2px solid #d3c9c4;	
+    background: #fff;	
+	overflow-y: auto;	
+	min-height: 30px;
+	max-height: 180px;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.ui-autocomplete li:nth-child(2n+1)
+{
+	background-color: #fbfbfb;
+}
+
+* html .ui-autocomplete{
+	height: 150px;
+}
+
+.ui-menu
+{
+    list-style: none;    
+    margin: 0;
+    display: block;
+    outline: none;
+
+	/* added */
+	padding: 2px;
+    background: none;
+    background-color: #fff;
+}
+.ui-menu .ui-menu
+{
+	position: absolute;
+
+	/* added */
+    margin-top: -3px;    
+}
+.ui-menu .ui-menu-item
+{
+    position: relative;
+	margin: 0;
+	padding: 3px 1em 3px .4em;
+	cursor: pointer;
+	min-height: 0; /* support: IE7 */
+	/* support: IE10, see #8844 */
+	list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");  
+}
+.ui-menu .ui-menu-item:nth-child(even),
+.ui-menu .ui-menu-item:nth-child(odd),
+.ui-menu-item a:hover {
+	 /* background-color: #D8D8D8; */
+}
+
+.ui-menu .ui-menu-item:hover
+{
+	/* font-weight: bold; */	
+}
+
+.ui-menu .ui-menu-divider
+{
+    margin: 5px -2px 5px -2px;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-width: 1px 0 0 0;
+}
+.ui-menu .ui-menu-item a
+{
+	/* added */
+    background-color: White;
+    text-decoration: none;
+    display: block;
+    padding: 2px .4em;
+    line-height: 1.5;
+    min-height: 0; /* support: IE7 */
+    font-weight: normal;
+    color: #412506;
+    font-size: 13px;
+    border-bottom: 1px dotted silver;
+}
+
+.ui-menu .ui-state-focus,
+.ui-menu .ui-state-active {
+	margin: -1px;	
+	color: #fcb911;
+	
+}
+.ui-menu .ui-state-disabled
+{
+    font-weight: normal;
+    margin: .4em 0 .2em;
+    line-height: 1.5;
+}
+.ui-menu .ui-state-disabled a
+{
+    cursor: default;
+}
+.ui-menu-icons
+{
+    position: relative;
+}
+.ui-menu-icons .ui-menu-item a
+{
+    position: relative;
+    padding-left: 2em;
+}
+.ui-menu .ui-icon
+{
+    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: .2em;
+	margin: auto 0;
+}
+.ui-menu .ui-menu-icon
+{
+    left: auto;
+	right: 0;
+}
+
+.ui-helper-hidden-accessible
+{
+	display: none;
+}
+/* EO AUTOCOMPLETE */

@@ -1,37 +1,55 @@
-﻿@model WeeklyPlaner.ViewModels.MealViewModel           
+﻿@model WeeklyPlaner.ViewModels.MealViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Vnesi obrok";
 }
 
-<h2>Create</h2>
+<h2>Vnesi obrok</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Meal</h4>
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @id = "title", @class = "form-control" } })
+                <span class="error">Prosim vnesi ime obroka</span>
+            </div>
+        </div>
         <hr />
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            <h4>Sestavine</h4>
+            <table class="table borderless">
+                <tr>
+                    <td>Količina</td>
+                    <td>Enota</td>
+                    <td>Sestavina</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="quantity" class="form-control" />
+                        <span class="error">Prosim vnesi količino</span>
+                    </td>
+                    <td>
+                        <input type="text" id="unit" class="form-control" />                        
+                        <span class="error">Prosim vnesi enoto</span>
+                    </td>
+                    <td>
+                        <input type="hidden" id="ingredientId" />
+                        <input type="text" id="ingredient" class="form-control ingredient_autocomplete" />
+                        <span class="error">Prosim vnesi sestavino</span>
+                    </td>
+                    <td>
+                        <input type="button" id="add" value="Dodaj" class="btn btn-info" />
+                    </td>
+                </tr>
+            </table>
+            <div id="orderItems" class="tablecontainer"></div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.EditorFor(x => x.Courses)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <div>
+            <input id="submit" type="button" value="Shrani" class="btn btn-default" />
         </div>
     </div>
 }
@@ -42,4 +60,197 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script>
+        $(document).ready(function () {
+            var orderItems = [];
+            //Add button click function
+            $('#add').click(function () {
+                //Check validation of order item
+                var isValidItem = true;
+                if ($('#ingredient').val().trim() == '') {
+                    isValidItem = false;
+                    $('#ingredient').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#ingredient').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#quantity').val().trim() != '' && !isNaN($('#quantity').val().trim()))) {
+                    isValidItem = false;
+                    $('#quantity').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#quantity').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#unit').val().trim() == '') {
+                    isValidItem = false;
+                    $('#unit').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#unit').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                //Add item to list if valid
+                if (isValidItem) {
+                    orderItems.push({
+                        MealId: 1,
+                        Quantity: parseInt($('#quantity').val().trim()),
+                        Unit: $('#unit').val().trim(),
+                        IngredientId: $('#ingredientId').val().trim(),
+                        Ingredient: $('#ingredient').val().trim()
+                    });
+
+                    console.log(orderItems);
+
+                    //Clear fields
+                    $('#ingredient').val('').focus();
+                    $('#quantity,#unit,#ingredientId').val('');
+
+                }
+                //populate order items
+                GeneratedItemsTable();
+
+            });
+            //Save button click function
+            $('#submit').click(function () {
+                //validation of order
+                var isAllValid = true;
+                if (orderItems.length == 0) {
+                    $('#orderItems').html('<span style="color:red;">Vnesi sestavine obroka</span>');
+                    isAllValid = false;
+                }
+
+                if ($('#title').val().trim() == '') {
+                    $('#title').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#title').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                //Save if valid
+                if (isAllValid) {
+                    var data = {
+                        Title: $('#title').val().trim(),
+                        MealItems: orderItems
+                    }
+
+                    console.log(data);
+
+                    $(this).val('Prosimo počakajte...');
+
+                    $.ajax({
+                        url: '/Meals/Create',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Končano');
+                                //clear form
+                                orderItems = [];
+                                $('#title').val('');
+                                $('#orderItems').empty();
+                            }
+                            else {
+                                alert('Napaka');
+                            }
+                            $('#submit').val('Shrani');
+                        },
+                        error: function () {
+                            alert('Prišlo je do napake! Prosim poizkusite znova.');
+                            $('#submit').val('Shrani');
+                        }
+                    });
+                }
+
+            });
+            //function for show added items in table
+            function GeneratedItemsTable() {
+                if (orderItems.length > 0) {                   
+                    var $table = $('<table/>');
+                    $table.append('<thead><tr><th>Količina</th><th>Enota</th><th>Sestavina</th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(orderItems, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.Quantity));
+                        $row.append($('<td/>').html(val.Unit));
+                        $row.append($('<td/>').html('<input type="hidden" value="' + val.IngredientId + '">' + '<span>' + val.Ingredient + '</span>'));
+                        $tbody.append($row);
+                    });
+                    $table.append($tbody);
+                    $('#orderItems').html($table);
+                }
+            }
+
+            /* ingredient autocomplete */
+            $('.ingredient_autocomplete').autocomplete({                
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@(Url.Action("Autocomplete", "Items"))",
+                        type: "POST",
+                        dataType: "json",
+                        data: { "searchString": request.term },
+                        success: function (data) {
+                            response(data)
+                        }
+                    });                    
+                },
+                autoFocus: 1,
+                minLength: 1,
+                messages: { noResults: "", results: function () { } },
+                select: function (request, response) {                    
+                    $("#ingredientId").val(response.item.id);
+
+                    //var n = $(".ingredient_group");
+                    //if (n != undefined) {
+                    //    n.val(t.item.groupId);
+                    //}
+                }
+            });
+        });
+    </script>
 }
+
+<style>
+    /*Adding some css for looks good*/
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+
+    /*css for table*/
+    .container td {
+        vertical-align: top;
+    }
+
+    .tablecontainer table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid #BFAEAE;
+        border-right: 1px solid #BFAEAE;
+    }
+
+    .tablecontainer th {
+        border-bottom: 2px solid #BFAEAE !important;
+    }
+
+    .tablecontainer th, .tablecontainer td {
+        text-align: left;
+        border-left: 1px solid #BFAEAE;
+        padding: 5px;
+        border-bottom: 1px solid #BFAEAE;
+    }
+
+    .ui-widget {
+        font-size: 12px !important;
+    }
+</style>

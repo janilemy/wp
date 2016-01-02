@@ -9,11 +9,13 @@ using System.Web.Mvc;
 using WeeklyPlaner.DAL;
 using WeeklyPlaner.Models;
 using PagedList;
+using WeeklyPlaner.DAL.Repositories;
 
 namespace WeeklyPlaner.Controllers
 {    
     public class ItemsController : Controller
     {
+        private UnitOfWork unitOfWork = new UnitOfWork();
         private WeeklyPlanerContext db = new WeeklyPlanerContext();
         public const int pageSize = 25;
 
@@ -181,6 +183,12 @@ namespace WeeklyPlaner.Controllers
             db.Entry(itemToDelete).State = EntityState.Deleted;            
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        
+        public JsonResult Autocomplete(string searchString)
+        {                        
+            var result = unitOfWork.ItemRepository.Get(i => i.ItemName.StartsWith(searchString)).Select(i => new { id = i.ID, value = i.ItemName }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
