@@ -50,8 +50,22 @@ namespace WeeklyPlaner.DAL.Repositories
             context.SaveChanges();
         }
 
-        internal void InsertMealItems(List<MealItem> mealItems)
+        public List<MealItem> MealItemViewToMealItem(List<MealItemView> mealItemView)
         {
+            List<MealItem> result = new List<MealItem>();
+
+            foreach(MealItemView item in mealItemView)
+            {
+                result.Add(new MealItem{ ID = item.ID, ItemId = item.ItemId, MealId = item.MealId, Quantity = item.Quantity, UnitId = item.UnitId });
+            }
+
+            return result;
+        }
+
+        internal void InsertMealItems(List<MealItemView> mealItemsView)
+        {
+            List<MealItem> mealItems = MealItemViewToMealItem(mealItemsView);
+
             mealItems.ForEach(item => context.MealItem.Add(item));
             context.SaveChanges();
         }

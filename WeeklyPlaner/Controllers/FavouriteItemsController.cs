@@ -40,7 +40,7 @@ namespace WeeklyPlaner
         // GET: FavouriteItems/Create
         public ActionResult Create()
         {
-            ViewBag.ItemId = new SelectList(db.Item, "ID", "ItemName");
+            ViewBag.ItemId = new SelectList(db.Item, "ID", "Name");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace WeeklyPlaner
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ItemId = new SelectList(db.Item, "ID", "ItemName", favouriteItem.ItemId);
+            ViewBag.ItemId = new SelectList(db.Item, "ID", "Name", favouriteItem.ItemId);
             return View(favouriteItem);
         }
 
@@ -74,7 +74,7 @@ namespace WeeklyPlaner
             {
                 return HttpNotFound();
             }
-            ViewBag.ItemId = new SelectList(db.Item, "ID", "ItemName", favouriteItem.ItemId);
+            ViewBag.ItemId = new SelectList(db.Item, "ID", "Name", favouriteItem.ItemId);
             return View(favouriteItem);
         }
 
@@ -91,7 +91,7 @@ namespace WeeklyPlaner
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ItemId = new SelectList(db.Item, "ID", "ItemName", favouriteItem.ItemId);
+            ViewBag.ItemId = new SelectList(db.Item, "ID", "Name", favouriteItem.ItemId);
             return View(favouriteItem);
         }
 

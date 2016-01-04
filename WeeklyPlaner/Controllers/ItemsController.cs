@@ -43,7 +43,7 @@ namespace WeeklyPlaner.Controllers
             if(!String.IsNullOrEmpty(searchString))
             {
                 // filter by search string
-                item = item.Where(i => i.ItemName.Contains(searchString));
+                item = item.Where(i => i.Name.Contains(searchString));
             }
 
             // sort items by sort order
@@ -56,10 +56,10 @@ namespace WeeklyPlaner.Controllers
                     item = item.OrderBy(i => i.ItemCategoryId);
                     break;
                 case "name_desc":
-                    item = item.OrderByDescending(i => i.ItemName);
+                    item = item.OrderByDescending(i => i.Name);
                     break;
                 default:
-                    item = item.OrderBy(i => i.ItemName);
+                    item = item.OrderBy(i => i.Name);
                     break;
             }
             
@@ -98,7 +98,7 @@ namespace WeeklyPlaner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemCategoryId,ItemName,Protein,CarbonHidrates,Fats,Fibers,Calories")] Item item)
+        public ActionResult Create([Bind(Include = "ItemCategoryId,Name,Protein,CarbonHidrates,Fats,Fibers,Calories")] Item item)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace WeeklyPlaner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ItemCategoryId,ItemName,Protein,CarbonHidrates,Fats,Fibers,Calories")] Item item)
+        public ActionResult Edit([Bind(Include = "ID,ItemCategoryId,Name,Protein,CarbonHidrates,Fats,Fibers,Calories")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -185,9 +185,15 @@ namespace WeeklyPlaner.Controllers
             return RedirectToAction("Index");
         }
         
-        public JsonResult Autocomplete(string searchString)
-        {                        
-            var result = unitOfWork.ItemRepository.Get(i => i.ItemName.StartsWith(searchString)).Select(i => new { id = i.ID, value = i.ItemName }).ToList();
+        public JsonResult AutocompleteItems(string searchString)
+        {
+            var result = unitOfWork.ItemRepository.Get(i => i.Name.StartsWith(searchString)).Select(i => new { id = i.ID, value = i.Name }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AutocompleteUnits(string searchString)
+        {
+            var result = unitOfWork.UnitRepository.Get(i => i.Name.StartsWith(searchString)).Select(i => new { id = i.ID, value = i.Name }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

@@ -1,7 +1,13 @@
-﻿body {
+﻿/*
+	* COLORS *
+
+	#007196 -> blue-color 
+
+*/
+
+body {
 	padding-top: 50px;
-	padding-bottom: 20px;
-	background-color: #f6f6f6;
+	padding-bottom: 20px;	
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,7 +27,7 @@
 input,
 select,
 textarea {
-	max-width: 280px;
+	/* max-width: 280px; */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,6 +39,11 @@ h1, h2, h3, h4, h5, h6 {
 	box-shadow: 0 2px 2px #AAA;
 	padding: 10px;
 	margin: 20px 0;
+}
+
+.error
+{
+	visibility: hidden;
 }
 
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
@@ -149,6 +160,35 @@ section {
 	margin-top: 10px;
 }
 
+#meal
+{
+
+}
+
+#meal section
+{	
+	border-top: 1px solid #e4e4e4;
+	padding-top: 20px;
+}
+
+.meal_title
+{
+
+}
+
+.meal_Items
+{
+
+}
+
+.Items
+{
+	border: 1px solid silver;
+	height: 193px;
+	overflow-y: scroll;
+	padding: 5px 10px;
+}
+
 /**************************************************************************************** 
 AUTOCOMPLETE 
 *****************************************************************************************/
@@ -253,7 +293,7 @@ AUTOCOMPLETE
 .ui-menu .ui-state-focus,
 .ui-menu .ui-state-active {
 	margin: -1px;	
-	color: #fcb911;
+	color: #007196;
 	
 }
 .ui-menu .ui-state-disabled

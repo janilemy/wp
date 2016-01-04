@@ -57,7 +57,7 @@ namespace WeeklyPlaner.Models
         [Display(Name = "Obrok")]
         public int MealId { get; set; }
         [Display(Name = "Sestavina")]
-        public int IngredientId { get; set; }
+        public int ItemId { get; set; }
 
         [Display(Name = "Enota")]
         public int UnitId { get; set; }
@@ -66,7 +66,16 @@ namespace WeeklyPlaner.Models
 
         public virtual Meal Meal { get; set; }
         public virtual Unit Unit { get; set; }
-        public virtual Ingredient Ingredient { get; set; }        
+        public virtual Item Item { get; set; }        
+    }
+
+    public class MealItemView
+    {
+        public int ID { get; set; }
+        public int MealId { get; set; }
+        public int ItemId { get; set; }
+        public int UnitId { get; set; }
+        public double Quantity { get; set; }
     }
 
     

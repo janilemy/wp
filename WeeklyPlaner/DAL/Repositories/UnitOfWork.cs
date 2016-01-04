@@ -11,6 +11,7 @@ namespace WeeklyPlaner.DAL.Repositories
         WeeklyPlanerContext context = new WeeklyPlanerContext();
         private MealRepository mealRepository;
         private GenericRepository<Item> itemRepository;
+        private GenericRepository<Unit> unitRepository;
         private GenericRepository<Planer> planerRepository;
         private GenericRepository<Course> courseRepository;
 
@@ -35,6 +36,18 @@ namespace WeeklyPlaner.DAL.Repositories
                     this.itemRepository = new GenericRepository<Item>(context);
                 }
                 return itemRepository;
+            }
+        }
+
+        public GenericRepository<Unit> UnitRepository
+        {
+            get
+            {
+                if (this.unitRepository == null)
+                {
+                    this.unitRepository = new GenericRepository<Unit>(context);
+                }
+                return unitRepository;
             }
         }
 

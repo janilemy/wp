@@ -13,8 +13,7 @@ namespace WeeklyPlaner.DAL
         public WeeklyPlanerContext() : base("WeeklyPlanerContext")
         { }
 
-        public DbSet<Item> Item { get; set; }
-        public DbSet<Ingredient> Ingredient { get; set; }
+        public DbSet<Item> Item { get; set; }        
         public DbSet<ItemCategory> ItemCategory { get; set; }
         public DbSet<ItemAdditionalInfo> ItemAdditionalInfo { get; set; }
         public DbSet<FavouriteItem> FavouriteItem { get; set; }

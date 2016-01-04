@@ -34,12 +34,12 @@ namespace WeeklyPlaner.DAL
 
             var units = new List<Unit>
             {
-                new Unit { Symbol="ml", Title="Mililiter", UnitTypeId=1},
-                new Unit { Symbol="l", Title="Liter", UnitTypeId=1},                
-                new Unit { Symbol="mg", Title="Miligram", UnitTypeId=2},
-                new Unit { Symbol="g", Title="Gram", UnitTypeId=2},
-                new Unit { Symbol="dag", Title="Dekagram", UnitTypeId=2},
-                new Unit { Symbol="kg", Title="Kilogram", UnitTypeId=2}                
+                new Unit { Symbol="ml", Name="Mililiter", UnitTypeId=1},
+                new Unit { Symbol="l", Name="Liter", UnitTypeId=1},                
+                new Unit { Symbol="mg", Name="Miligram", UnitTypeId=2},
+                new Unit { Symbol="g", Name="Gram", UnitTypeId=2},
+                new Unit { Symbol="dag", Name="Dekagram", UnitTypeId=2},
+                new Unit { Symbol="kg", Name="Kilogram", UnitTypeId=2}                
             };
 
             units.ForEach(u => context.Unit.Add(u));
@@ -62,21 +62,7 @@ namespace WeeklyPlaner.DAL
             };
 
             itemCategories.ForEach(ic => context.ItemCategory.Add(ic));
-            context.SaveChanges();
-
-            // Set default items
-            var items = new List<Item>
-            {
-                new Ingredient{ ItemCategoryId=1, ItemName="Banana", Calories=89, Protein=1.09, CarbonHidrates=22.84, Fats=0.33, Fibers=3  },
-                new Ingredient { ItemCategoryId=1, ItemName="Jabolko", Calories=52, Protein=0.26, CarbonHidrates=13.81, Fats=0.17, Fibers=2 },
-                new Ingredient { ItemCategoryId=1, ItemName="Borovnice", Calories=57 , Protein=0.74, CarbonHidrates=14.49, Fats=0.33, Fibers=2 },
-                new Ingredient { ItemCategoryId=4, ItemName="Jajce", Calories=90, Protein=8, CarbonHidrates=1, Fats=7, Fibers=0 },
-                new Ingredient { ItemCategoryId=6, ItemName="Ovseni kosmiči", Calories=372, Protein=13.5, CarbonHidrates=58.7, Fats=7, Fibers=10},
-                new Item { ItemCategoryId=11, ItemName="Bref" }
-            };
-
-            items.ForEach(i => context.Item.Add(i));
-            context.SaveChanges();
+            context.SaveChanges();                
 
             // Set default meals
             var meals = new List<Meal>
@@ -93,9 +79,9 @@ namespace WeeklyPlaner.DAL
             // Set default meal items
             var mealItems = new List<MealItem>
             {
-                new MealItem { ID=1, MealId=2, UnitId=4, Quantity=200, IngredientId=1 },
-                new MealItem { ID=2, MealId=2, UnitId=4, Quantity=30, IngredientId=3 },
-                new MealItem { ID=2, MealId=2, UnitId=4, Quantity=50, IngredientId=5 }
+                new MealItem { ID=1, MealId=2, UnitId=4, Quantity=200, ItemId=1 },
+                new MealItem { ID=2, MealId=2, UnitId=4, Quantity=30, ItemId=3 },
+                new MealItem { ID=2, MealId=2, UnitId=4, Quantity=50, ItemId=5 }
             };
 
             mealItems.ForEach(mi => context.MealItem.Add(mi));

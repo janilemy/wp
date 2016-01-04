@@ -144,20 +144,17 @@
     </Compile>
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Migrations\201512120040399_InitialCreate.cs" />
-    <Compile Include="Migrations\201512120040399_InitialCreate.Designer.cs">
-      <DependentUpon>201512120040399_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201601032017275_InitialCreate.cs" />
+    <Compile Include="Migrations\201601032017275_InitialCreate.Designer.cs">
+      <DependentUpon>201601032017275_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512120040579_Initial.cs" />
-    <Compile Include="Migrations\201512120040579_Initial.Designer.cs">
-      <DependentUpon>201512120040579_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512281625189_AddMealCourse.cs" />
-    <Compile Include="Migrations\201512281625189_AddMealCourse.Designer.cs">
-      <DependentUpon>201512281625189_AddMealCourse.cs</DependentUpon>
+    <Compile Include="Migrations\201601032122457_AddManufacturerForItems.cs" />
+    <Compile Include="Migrations\201601032122457_AddManufacturerForItems.Designer.cs">
+      <DependentUpon>201601032122457_AddManufacturerForItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ShoppingList.cs" />
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Models\Meal.cs" />
     <Compile Include="Models\Planer.cs" />
@@ -200,14 +197,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EmbeddedResource Include="Migrations\201512120040399_InitialCreate.resx">
-      <DependentUpon>201512120040399_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601032017275_InitialCreate.resx">
+      <DependentUpon>201601032017275_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512120040579_Initial.resx">
-      <DependentUpon>201512120040579_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512281625189_AddMealCourse.resx">
-      <DependentUpon>201512281625189_AddMealCourse.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601032122457_AddManufacturerForItems.resx">
+      <DependentUpon>201601032122457_AddManufacturerForItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Home\Home.sl.resx" />
     <EmbeddedResource Include="Resources\Views\Items\Items.sl.resx">

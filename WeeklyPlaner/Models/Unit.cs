@@ -17,7 +17,7 @@ namespace WeeklyPlaner.Models
         [Display(Name = "Kratica")]
         public string Symbol { get; set; }
         [Display(Name = "Enota")]
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         public virtual UnitType UnitType { get; set; }
         public virtual ICollection<MealItem> MealItem { get; set; }

@@ -62,10 +62,15 @@ namespace WeeklyPlaner.Controllers
                 var meal = new Meal { Title = mealViewModel.Title };
 
                 unitOfWork.MealRepository.AddOrUpdateMealCourses(meal, mealViewModel.Courses);
+                
+                // Insert meal and set mealId for each mealItem
                 unitOfWork.MealRepository.Insert(meal);
+                mealViewModel.MealItems.ForEach(item => item.MealId = meal.ID);
+
+                // insert mealItems
                 unitOfWork.MealRepository.InsertMealItems(mealViewModel.MealItems);
 
-                return RedirectToAction("Index");
+                return Json(new { status = true });
             }
 
             return View(mealViewModel);
