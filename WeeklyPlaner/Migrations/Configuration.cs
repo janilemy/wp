@@ -205,17 +205,17 @@ namespace WeeklyPlaner.Migrations
             // Set default meals
             var meals = new List<Meal>
             {
-                new Meal { ID=1, UserID=1, Title="Omleta" },
-                new Meal { ID=2, UserID=1, Title="Ovseni kosmièi z borovnicami in banano"},
-                new Meal { ID=3, UserID=1, Title="Špageti bolognese"},
-                new Meal { ID=4, UserID=1, Title="Tortilije s pišèanèjim mesom"},
+                new Meal { ID=1, UserID=1, Title="Omleta", ImagePath="~/Content/Images/Meals/1.jpg" },
+                new Meal { ID=2, UserID=1, Title="Ovseni kosmièi z borovnicami in banano", ImagePath="~/Content/Images/Meals/2.jpg"},
+                new Meal { ID=3, UserID=1, Title="Špageti bolognese", ImagePath="~/Content/Images/Meals/3.jpg"},
+                new Meal { ID=4, UserID=1, Title="Tortilije s pišèanèjim mesom", ImagePath="~/Content/Images/Meals/4.jpg"},
                 new Meal { ID=5, UserID=1, Title="Rižota s pišèanèjim mesom"},
-                new Meal { ID=6, UserID=1, Title="Toast, pišèanèje prsi, skutin namaz"},
+                new Meal { ID=6, UserID=1, Title="Toast, pišèanèje prsi, skutin namaz", ImagePath="~/Content/Images/Meals/6.jpg"},
                 new Meal { ID=7, UserID=1, Title="Orešèki, pest"},
                 new Meal { ID=8, UserID=1, Title="Grški jogurt, jabolka, cimet in orešèki"},
-                new Meal { ID=9, UserID=1, Title="Èokolino fitness in whey"},
-                new Meal { ID=10, UserID=1, Title="Makaroni s pišèanèjim mesom"},
-                new Meal { ID=11, UserID=1, Title="Pišèanèji ragu z grahom", ImagePath="~/Content/Images/Meals/11.png"}
+                new Meal { ID=9, UserID=1, Title="Èokolino fitness in whey", ImagePath="~/Content/Images/Meals/9.jpg"},
+                new Meal { ID=10, UserID=1, Title="Makaroni s pišèanèjim mesom", ImagePath="~/Content/Images/Meals/10.jpg"},
+                new Meal { ID=11, UserID=1, Title="Pišèanèji ragu z grahom", ImagePath="~/Content/Images/Meals/11.jpg"}
             };
 
             meals.ForEach(m => context.Meal.AddOrUpdate(m));
@@ -294,19 +294,21 @@ namespace WeeklyPlaner.Migrations
             {
                 new PlanerMeals { PlanerMealsId=1, PlanerId=1, MealId=1, CourseId=1 },    
                 new PlanerMeals { PlanerMealsId=2, PlanerId=1, MealId=2, CourseId=1 },                
-                new PlanerMeals { PlanerMealsId=3, PlanerId=1, MealId=5, CourseId=3 },
+                new PlanerMeals { PlanerMealsId=3, PlanerId=1, MealId=10, CourseId=3 },
                 new PlanerMeals { PlanerMealsId=4, PlanerId=1, MealId=6, CourseId=4 },
-                new PlanerMeals { PlanerMealsId=5, PlanerId=1, MealId=9, CourseId=6 },
-                new PlanerMeals { PlanerMealsId=6, PlanerId=1, MealId=5, CourseId=7 },
-                new PlanerMeals { PlanerMealsId=7, PlanerId=2, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerMealsId=8, PlanerId=2, MealId=2, CourseId=1 },                
-                new PlanerMeals { PlanerMealsId=9, PlanerId=2, MealId=3, CourseId=3 },
-                new PlanerMeals { PlanerMealsId=10, PlanerId=2, MealId=6, CourseId=4 },
-                new PlanerMeals { PlanerMealsId=11, PlanerId=2, MealId=9, CourseId=6 },
-                new PlanerMeals { PlanerMealsId=12, PlanerId=2, MealId=3, CourseId=7 },
-                new PlanerMeals { PlanerMealsId=13, PlanerId=3, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerMealsId=14, PlanerId=3, MealId=2, CourseId=1 },                
-                new PlanerMeals { PlanerMealsId=15, PlanerId=3, MealId=11, CourseId=3 }             
+                //new PlanerMeals { PlanerMealsId=5, PlanerId=1, MealId=9, CourseId=6 },
+                new PlanerMeals { PlanerMealsId=5, PlanerId=1, MealId=10, CourseId=7 },
+                new PlanerMeals { PlanerMealsId=6, PlanerId=2, MealId=1, CourseId=1 },    
+                new PlanerMeals { PlanerMealsId=7, PlanerId=2, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=8, PlanerId=2, MealId=3, CourseId=3 },
+                new PlanerMeals { PlanerMealsId=9, PlanerId=2, MealId=6, CourseId=4 },
+                //new PlanerMeals { PlanerMealsId=11, PlanerId=2, MealId=9, CourseId=6 },
+                new PlanerMeals { PlanerMealsId=10, PlanerId=2, MealId=3, CourseId=7 },
+                new PlanerMeals { PlanerMealsId=11, PlanerId=3, MealId=1, CourseId=1 },    
+                new PlanerMeals { PlanerMealsId=12, PlanerId=3, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=13, PlanerId=3, MealId=11, CourseId=3 },                
+                new PlanerMeals { PlanerMealsId=14, PlanerId=3, MealId=11, CourseId=5 },
+                new PlanerMeals { PlanerMealsId=15, PlanerId=3, MealId=6, CourseId=7 }
                 
             };
 

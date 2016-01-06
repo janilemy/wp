@@ -21,7 +21,7 @@
 
         <h4>@Html.DisplayFor(mealItem => dayOfWeek), @Html.DisplayFor(mealItem => item.PlanedOn)</h4>
 
-        @{ int columns = 6; }
+        @{ int columns = 5; }
         @for (int i = 0; i < item.PlanerMeals.Count(); i++)
         {
             if (i % columns == 0)
@@ -32,18 +32,16 @@
             @*Bootstrap allows 12 columns across the page*@
             @Html.Raw("<div class=\"col-md-" + 12 / columns + "\">");
 
-            
             var imagePath = item.PlanerMeals.ElementAt(i).Meal.ImagePath == null ? string.Empty : Url.Content(item.PlanerMeals.ElementAt(i).Meal.ImagePath);
-            
 
-            <img src="@imagePath" alt="recipe" class="img-responsive" />
-            <span>@Html.DisplayFor(mealItem => item.PlanerMeals.ElementAt(i).Meal.Title)</span>
+            <img src="@imagePath" alt="Obrok" class="img-thumbnail" style="width: 161px; height: 121px;" />
+            <span style="font-size: 13px; text-transform: uppercase;">@Html.DisplayFor(mealItem => item.PlanerMeals.ElementAt(i).Meal.Title)</span>
             @Html.Raw("</div>");
 
-                               if (i % columns == columns - 1 || i == item.PlanerMeals.Count() - 1)
-                               {
-                                @Html.Raw("</div>");
-                               }
+            if (i % columns == columns - 1 || i == item.PlanerMeals.Count() - 1)
+            {
+             @Html.Raw("</div>");
+            }
         }
     </div>
 }

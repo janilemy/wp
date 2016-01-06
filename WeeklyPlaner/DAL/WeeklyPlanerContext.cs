@@ -36,5 +36,7 @@ namespace WeeklyPlaner.DAL
 
             // CONFIGURE MODEL WITH FLUENT API
         }
+
+        public System.Data.Entity.DbSet<WeeklyPlaner.Models.ShoppingList> ShoppingLists { get; set; }
     }
 }
