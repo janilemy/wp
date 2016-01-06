@@ -11,7 +11,8 @@
             <section id="header">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="http://sp24testing.azurewebsites.net/Content/images/recipes/default/small/11811.jpg" alt="obrok" class="img-responsive">
+                        @{ var imagePath = Model.ImagePath == null ? string.Empty : Url.Content(Model.ImagePath); }
+                        <img src="@imagePath" alt="obrok" class="img-responsive">
                     </div>
                     <div class="col-md-8">
                         <h4>@Html.DisplayFor(model => model.Title)</h4>
@@ -21,20 +22,26 @@
             <section id="content">
                 <hr class="line silver" />
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <h4>Sestavine</h4>
-                        <div class="row">
+                        <table class="table table-bordered">
                             @foreach (var item in Model.MealItem)
                             {
-                                <div class="col-md-2">
-                                    @Html.DisplayFor(mealItem => item.Quantity)
-                                    @Html.DisplayFor(mealItem => item.Unit.Symbol)
-                                </div>
-                                <div class="col-md-10">
-                                    @Html.DisplayFor(mealItem => item.Item.Name)
-                                </div>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(mealItem => item.Quantity)
+                                        @Html.DisplayFor(mealItem => item.Unit.Symbol)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(mealItem => item.Item.Name)
+                                    </td>
+                                </tr>
                             }
-                        </div>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Postopek</h4>
+                        @Html.DisplayFor(model => Model.MealPreparation.Preparation)
                     </div>
                 </div>
             </section>

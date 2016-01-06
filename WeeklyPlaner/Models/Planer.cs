@@ -12,7 +12,7 @@ namespace WeeklyPlaner.Models
     public class Planer
     {
         public int ID { get; set; }
-        [Display(Name="Datum")]
+        [Display(Name = "Datum"), DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime PlanedOn { get; set; }
         public virtual ICollection<PlanerMeals> PlanerMeals { get; set; }
     }

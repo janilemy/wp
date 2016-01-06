@@ -11,11 +11,16 @@ namespace WeeklyPlaner.ViewModels
     {
         [Key]
         public int ID { get; set; }
+        [Display(Name="Ime obroka")]
         public string Title { get; set; }
-
+        
+        [Display(Name="Sestavine")]
         public List<MealItemView> MealItems { get; set; }
+        [Display(Name="Postopek")]
+        public MealPreparation MealPreparation { get; set; }
 
         //public virtual MealAdditionalInfo MealAdditionalInfo { get; set; }
+        [Display(Name="Tip obroka")]
         public virtual ICollection<MealAssignedCourseData> Courses { get; set; }        
     }
 

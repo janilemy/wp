@@ -10,6 +10,7 @@ using WeeklyPlaner.DAL;
 using WeeklyPlaner.Models;
 using PagedList;
 using WeeklyPlaner.DAL.Repositories;
+using WeeklyPlaner.ViewModels;
 
 namespace WeeklyPlaner.Controllers
 {    
@@ -98,25 +99,16 @@ namespace WeeklyPlaner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemCategoryId,Name,Protein,CarbonHidrates,Fats,Fibers,Calories")] Item item)
+        public ActionResult Create(ItemViewModel itemViewModel)
         {
-            try
-            {
                 if (ModelState.IsValid)
                 {
-                    db.Item.Add(item);
-                    db.SaveChanges();
+                    unitOfWork.ItemRepository.InsertItemWithAdditionalInfo(itemViewModel);                    
                     return RedirectToAction("Index");
                 }
-            }
-            catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists contact administrator.");
-            }
 
-            ViewBag.ItemCategoryId = new SelectList(db.ItemCategory, "ID", "Category", item.ItemCategoryId);
-            return View(item);
+                ViewBag.ItemCategoryId = new SelectList(db.ItemCategory, "ID", "Category", itemViewModel.ItemCategoryId);
+                return View(itemViewModel);
         }
 
         // GET: Items/Edit/5 

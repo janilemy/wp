@@ -17,14 +17,18 @@ namespace WeeklyPlaner.Models
         public int UserID { get; set; }
         [Display(Name = "Obrok")]
         public string Title { get; set; }
+        public string ImagePath { get; set; }
 
         public Meal()
         {
             Courses = new List<Course>();
         }
 
+        public virtual MealPreparation MealPreparation { get; set; }    
         public virtual ICollection<Course> Courses { get; set; }
         public virtual MealAdditionalInfo MealAdditionalInfo { get; set; }
+
+        [Display(Name="Sestavine")]
         public virtual ICollection<MealItem> MealItem { get; set; }        
         public virtual ICollection<Planer> Planer { get; set; }
     }
@@ -60,13 +64,25 @@ namespace WeeklyPlaner.Models
         public int ItemId { get; set; }
 
         [Display(Name = "Enota")]
-        public int UnitId { get; set; }
+        public int? UnitId { get; set; }
         [Display(Name = "Količina")]
-        public double Quantity { get; set; }
+        public double? Quantity { get; set; }
 
         public virtual Meal Meal { get; set; }
         public virtual Unit Unit { get; set; }
-        public virtual Item Item { get; set; }        
+        public virtual Item Item { get; set; }         
+    }
+
+    public class MealPreparation
+    {
+        [ForeignKey("Meal")]
+        public int ID { get; set; }        
+        public int? ActivePreparationTime { get; set; }
+        public int? PasivePreparationTime { get; set; }
+        [Display(Name= "Postopek")]
+        public string Preparation { get; set; }
+
+        public virtual Meal Meal { get; set; }
     }
 
     public class MealItemView

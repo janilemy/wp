@@ -7,13 +7,13 @@ namespace WeeklyPlaner.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddManufacturerForItems : IMigrationMetadata
+    public sealed partial class AddMealPreparation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddManufacturerForItems));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMealPreparation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601032122457_AddManufacturerForItems"; }
+            get { return "201601041040411_AddMealPreparation"; }
         }
         
         string IMigrationMetadata.Source

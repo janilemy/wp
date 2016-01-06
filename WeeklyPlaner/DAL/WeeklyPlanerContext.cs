@@ -21,6 +21,7 @@ namespace WeeklyPlaner.DAL
         public DbSet<UnitType> UnitType { get; set; }
         public DbSet<Meal> Meal { get; set; }        
         public DbSet<MealItem> MealItem { get; set; }
+        public DbSet<MealPreparation> MealPreparation { get; set; }
         public DbSet<MealAdditionalInfo> MealAdditionalInfo { get; set; }        
         public DbSet<Planer> Planer { get; set; }
         public DbSet<PlanerMeals> PlanerMeals { get; set; }

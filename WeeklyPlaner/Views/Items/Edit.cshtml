@@ -6,43 +6,102 @@
 
 <h2>Uredi izdelek</h2>
 
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Item</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+            <h4>Osnovni podatki</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ItemCategoryId, "ItemCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ItemCategoryId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ItemCategoryId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <section class="item_header">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Manufacturer, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Manufacturer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ItemCategoryId, "ItemCategoryId", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("ItemCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ItemCategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr />
+            <section class="item_content">
+                <h4>Nutricistične vrednosti</h4>
+                <div class="row">
+                    @foreach (var item in Model.ItemAdditionalInfo)
+                    {
+                        <div class="col-md-3">
+                            <p>
+                                @Html.DisplayFor(itemInfo => item.Quantity)
+                                @Html.DisplayFor(itemInfo => item.Unit.Name)
+                            </p>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>@Html.LabelFor(itemInfo => item.Calories, htmlAttributes: new { @class = "control-label" })</td>
+                                    <td>
+                                        @Html.EditorFor(itemInfo => item.Calories, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(itemInfo => item.Protein, htmlAttributes: new { @class = "control-label" })</td>
+                                    <td>
+                                        @Html.EditorFor(itemInfo => item.Protein, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(itemInfo => item.CarbonHidrates, htmlAttributes: new { @class = "control-label" })</td>
+                                    <td>
+                                        @Html.EditorFor(itemInfo => item.CarbonHidrates, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(itemInfo => item.Fats, htmlAttributes: new { @class = "control-label" })</td>
+                                    <td>
+                                        @Html.EditorFor(itemInfo => item.Fats, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(itemInfo => item.Fibers, htmlAttributes: new { @class = "control-label" })</td>
+                                    <td>
+                                        @Html.EditorFor(itemInfo => item.Fibers, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </section>
+            <section class="footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Shrani" class="btn btn-default" />
+                    </div>
+                </div>
+            </section>
+        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Shrani" class="btn btn-default" />
-            </div>
+        <div>
+            @Html.ActionLink("Nazaj na seznam", "Index")
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Nazaj na seznam", "Index")
 </div>
 
 @section Scripts {

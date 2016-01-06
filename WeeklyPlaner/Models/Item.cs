@@ -16,7 +16,9 @@ namespace WeeklyPlaner.Models
         [Display(Name = "Kategorija")]
         public int ItemCategoryId { get; set; }
         [Display(Name = "Izdelek")]
-        public string Name { get; set; }     
+        public string Name { get; set; }
+        [Display(Name = "Proizvajalec")]
+        public string Manufacturer { get; set; }         
 
         public virtual ItemCategory ItemCategory { get; set; }
         public virtual ICollection<ItemAdditionalInfo> ItemAdditionalInfo { get; set; }
@@ -59,10 +61,10 @@ namespace WeeklyPlaner.Models
         public double? Fibers { get; set; }
         [Display(Name = "Kalorije")]
         public int? Calories { get; set; }
+        [Display(Name = "Trgovina")]
+        public string Shop { get; set; }   
         [Display(Name="Cena")]
-        public decimal? ItemPrice { get; set; }
-        [Display(Name = "Proizvajalec")]
-        public string Manufacturer { get; set; }         
+        public decimal? Price { get; set; }         
 
         public virtual Item Item { get; set; }
         public virtual Unit Unit { get; set; }        

@@ -1,33 +1,123 @@
 ﻿@model WeeklyPlaner.Models.Item
 
 @{
-    ViewBag.Title = "Podrobni pregled";
+    ViewBag.Title = "Izdelek";
 }
 
-<h2>Podrobni pregled</h2>
+<h2>Izdelek</h2>
 
-<div>
-    <h4>Izdelek</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemCategory.Category)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ItemCategory.Category)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-md-8">
+        <h4>Osnovni podatki</h4>
+        <hr />
+        <section class="item_header">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.Manufacturer)
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.ItemCategory.Category)
+                </div>
+            </div>
+        </section>
+        @*<section class="item_shop">
+            <div class="row">
+                <div class="col-md-3">
+                    @foreach (var item in Model.ItemAdditionalInfo)
+                    {
+                        <p>
+                            @Html.DisplayFor(itemInfo => item.Shop)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(itemInfo => item.Price) €
+                        </p>
+                    }
+                </div>
+            </div>
+        </section>*@
+        <hr />
+        <section class="item_content">
+            <h4>Nutricistične vrednosti</h4>
+            <div class="row">
+                @foreach (var item in Model.ItemAdditionalInfo)
+                {
+                    <div class="col-md-3">
+                        <p>
+                            @Html.DisplayFor(itemInfo => item.Quantity)
+                            @Html.DisplayFor(itemInfo => item.Unit.Name)
+                        </p>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>Kalorij</td>
+                                <td>
+                                    @Html.DisplayFor(itemInfo => item.Calories) kcal
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Beljakovin</td>
+                                <td>
+                                    @Html.DisplayFor(itemInfo => item.Protein) g
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Hidratov</td>
+                                <td>
+                                    @Html.DisplayFor(itemInfo => item.CarbonHidrates) g
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maščob</td>
+                                <td>
+                                    @Html.DisplayFor(itemInfo => item.Fats) g
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Vlaknin</td>
+                                <td>
+                                    @Html.DisplayFor(itemInfo => item.Fibers) g
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            </div>
+        </section>
+        @*<section class="item_content">
+                <h4>Podrobno</h4>
+                <div class="row">
+                    <div class="col-md-2">
+                        <span>Količina</span>
+                        <input type="text" id="quantity" class="form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <span>Enota</span>
+                        <input type="text" id="unit" class="form-control unit_autocomplete" />
+                    </div>
+                </div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>Kalorij</dt>
+                    <dd>428kcal</dd>
+                    <dt>Beljakovin</dt>
+                    <dd>20g</dd>
+                    <dt>Hidratov</dt>
+                    <dd>20g</dd>
+                    <dt>Maščob</dt>
+                    <dd>10g</dd>
+                    <dt>Vlaknin</dt>
+                    <dd>5g</dd>
+                </dl>
+            </section>*@
+        <section class="footer">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }) |
+                    @Html.ActionLink("Nazaj na seznam", "Index")
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Nazaj na seznam", "Index")
-</p>

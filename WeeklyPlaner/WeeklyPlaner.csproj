@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\MealsController.cs" />
     <Compile Include="DAL\Repositories\GenericRepository.cs" />
+    <Compile Include="DAL\Repositories\ItemRepository.cs" />
     <Compile Include="DAL\Repositories\MealRepository.cs" />
     <Compile Include="DAL\Repositories\UnitOfWork.cs" />
     <Compile Include="DAL\WeeklyPlanerContext.cs" />
@@ -144,13 +145,21 @@
     </Compile>
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Migrations\201601032017275_InitialCreate.cs" />
-    <Compile Include="Migrations\201601032017275_InitialCreate.Designer.cs">
-      <DependentUpon>201601032017275_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201601041035175_InitialCreate.cs" />
+    <Compile Include="Migrations\201601041035175_InitialCreate.Designer.cs">
+      <DependentUpon>201601041035175_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601032122457_AddManufacturerForItems.cs" />
-    <Compile Include="Migrations\201601032122457_AddManufacturerForItems.Designer.cs">
-      <DependentUpon>201601032122457_AddManufacturerForItems.cs</DependentUpon>
+    <Compile Include="Migrations\201601041040411_AddMealPreparation.cs" />
+    <Compile Include="Migrations\201601041040411_AddMealPreparation.Designer.cs">
+      <DependentUpon>201601041040411_AddMealPreparation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601041048351_SeparateMealPreparation.cs" />
+    <Compile Include="Migrations\201601041048351_SeparateMealPreparation.Designer.cs">
+      <DependentUpon>201601041048351_SeparateMealPreparation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601061132578_AddImagePathToMeal.cs" />
+    <Compile Include="Migrations\201601061132578_AddImagePathToMeal.Designer.cs">
+      <DependentUpon>201601061132578_AddImagePathToMeal.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Item.cs" />
@@ -185,11 +194,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.sl.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MealViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Meals\11.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -197,11 +208,17 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EmbeddedResource Include="Migrations\201601032017275_InitialCreate.resx">
-      <DependentUpon>201601032017275_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601041035175_InitialCreate.resx">
+      <DependentUpon>201601041035175_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601032122457_AddManufacturerForItems.resx">
-      <DependentUpon>201601032122457_AddManufacturerForItems.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601041040411_AddMealPreparation.resx">
+      <DependentUpon>201601041040411_AddMealPreparation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601041048351_SeparateMealPreparation.resx">
+      <DependentUpon>201601041048351_SeparateMealPreparation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601061132578_AddImagePathToMeal.resx">
+      <DependentUpon>201601061132578_AddImagePathToMeal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Home\Home.sl.resx" />
     <EmbeddedResource Include="Resources\Views\Items\Items.sl.resx">
@@ -261,10 +278,10 @@
     <Content Include="Views\FavouriteItems\Index.cshtml" />
     <Content Include="Views\Meals\Create.cshtml" />
     <Content Include="Views\Meals\Delete.cshtml" />
-    <Content Include="Views\Meals\Details.cshtml" />
     <Content Include="Views\Meals\Edit.cshtml" />
     <Content Include="Views\Meals\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MealAssignedCourseData.cshtml" />
+    <Content Include="Views\Meals\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

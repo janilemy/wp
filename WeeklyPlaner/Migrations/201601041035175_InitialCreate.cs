@@ -49,11 +49,11 @@ namespace WeeklyPlaner.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         MealId = c.Int(nullable: false),
                         ItemId = c.Int(nullable: false),
-                        UnitId = c.Int(nullable: false),
-                        Quantity = c.Double(nullable: false),
+                        UnitId = c.Int(),
+                        Quantity = c.Double(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Unit", t => t.UnitId, cascadeDelete: true)
+                .ForeignKey("dbo.Unit", t => t.UnitId)
                 .ForeignKey("dbo.Item", t => t.ItemId, cascadeDelete: true)
                 .ForeignKey("dbo.Meal", t => t.MealId, cascadeDelete: true)
                 .Index(t => t.MealId)
@@ -67,6 +67,7 @@ namespace WeeklyPlaner.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         ItemCategoryId = c.Int(nullable: false),
                         Name = c.String(),
+                        Manufacturer = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.ItemCategory", t => t.ItemCategoryId, cascadeDelete: true)
@@ -89,19 +90,20 @@ namespace WeeklyPlaner.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        UnitId = c.Int(nullable: false),
+                        UnitId = c.Int(),
                         ItemId = c.Int(nullable: false),
-                        Quantity = c.Double(nullable: false),
+                        Quantity = c.Double(),
                         Protein = c.Double(),
                         CarbonHidrates = c.Double(),
                         Fats = c.Double(),
                         Fibers = c.Double(),
                         Calories = c.Int(),
-                        ItemPrice = c.Decimal(precision: 18, scale: 2),
+                        Shop = c.String(),
+                        Price = c.Decimal(precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Item", t => t.ItemId, cascadeDelete: true)
-                .ForeignKey("dbo.Unit", t => t.UnitId, cascadeDelete: true)
+                .ForeignKey("dbo.Unit", t => t.UnitId)
                 .Index(t => t.UnitId)
                 .Index(t => t.ItemId);
             

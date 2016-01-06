@@ -69,5 +69,11 @@ namespace WeeklyPlaner.DAL.Repositories
             mealItems.ForEach(item => context.MealItem.Add(item));
             context.SaveChanges();
         }
+
+        internal void InsertMealPreparation(MealPreparation mealPreparation)
+        {            
+            context.MealPreparation.Add(mealPreparation);
+            context.SaveChanges();
+        }
     }
 }

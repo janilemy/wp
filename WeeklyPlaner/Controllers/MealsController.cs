@@ -70,6 +70,9 @@ namespace WeeklyPlaner.Controllers
                 // insert mealItems
                 unitOfWork.MealRepository.InsertMealItems(mealViewModel.MealItems);
 
+                // insert mealPreparation
+                unitOfWork.MealRepository.InsertMealPreparation(mealViewModel.MealPreparation);
+
                 return Json(new { status = true });
             }
 

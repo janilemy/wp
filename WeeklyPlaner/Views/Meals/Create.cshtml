@@ -21,14 +21,15 @@
             </div>
         </section>
         <section class="meal_courses">
-            <div class="row">
-                @Html.EditorFor(x => x.Courses)
-            </div>
+            <h4>@Html.DisplayNameFor(model => model.Courses)</h4>
+        <div class="row">
+            @Html.EditorFor(x => x.Courses)
+        </div>
         </section>
         <section class="meal_Items">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Sestavine</h4>
+                    <h4>@Html.DisplayNameFor(model => model.MealItems)</h4>
                 </div>
             </div>
             <div class="row">
@@ -73,6 +74,14 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section class="meal_preparation">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>@Html.DisplayNameFor(model => model.MealPreparation.Preparation)</h4>
+                    <textarea id="Preparation" class="form-control" rows="10" style="resize: none;"></textarea>
                 </div>
             </div>
         </section>
@@ -127,9 +136,9 @@
                 }
 
                 //Add item to list if valid
-                if (isValidItem) {                    
+                if (isValidItem) {
 
-                    orderItems.push({                        
+                    orderItems.push({
                         Quantity: parseInt($('#quantity').val().trim()),
                         UnitId: $('#unitId').val().trim(),
                         Unit: $('#unit').val().trim(),
@@ -173,10 +182,11 @@
                             Title: '',
                             Assigned: this.checked
                         });
-                    });                    
+                    });
 
-                    var data = {                        
+                    var data = {
                         Title: $('#title').val().trim(),
+                        Preparation: $('#preparation').val().trim(),
                         Courses: courses,
                         MealItems: orderItems
                     }
@@ -192,11 +202,12 @@
                         success: function (d) {
                             //check is successfully save to database
                             if (d.status == true) {
-                                //will send status from server side                                
+                                //will send status from server side
 
                                 //clear form
                                 orderItems = [];
                                 $('#title').val('');
+                                $('#preparation').val('');
                                 $('#orderItems').empty();
                                 $('#error').append($('<div class="alert alert-info" />').html("Obrok je uspešno shranjen"));
                                 $('input:checkbox.course').each(function () {

@@ -1,4 +1,4 @@
-﻿@model WeeklyPlaner.Models.Item
+﻿@model WeeklyPlaner.ViewModels.ItemViewModel
 
 @{
     ViewBag.Title = "Vnesi izdelek";
@@ -7,40 +7,112 @@
 <h2>Vnesi izdelek</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Izdelek</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ItemCategoryId, "Kategorija", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ItemCategoryId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ItemCategoryId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>        
+            <h4>Osnovni podatki</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Vnesi" class="btn btn-default" />
-            </div>
+            <section class="item_header">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Manufacturer, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Manufacturer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ItemCategoryId, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("ItemCategoryId", (IEnumerable<SelectListItem>)ViewData["ItemCategory"], "Izberi...", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ItemCategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr />
+            <section class="item_content">
+                <h4>Nutricistične vrednosti</h4>
+
+                <div class="form-inline">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ItemAdditionalInfo.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.ItemAdditionalInfo.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ItemAdditionalInfo.Unit.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>@Html.LabelFor(model => model.ItemAdditionalInfo.Calories, htmlAttributes: new { @class = "control-label" })</td>
+                                <td>
+                                    @Html.EditorFor(model => model.ItemAdditionalInfo.Calories, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.ItemAdditionalInfo.Protein, htmlAttributes: new { @class = "control-label" })</td>
+                                <td>
+                                    @Html.EditorFor(model => model.ItemAdditionalInfo.Protein, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.ItemAdditionalInfo.CarbonHidrates, htmlAttributes: new { @class = "control-label" })</td>
+                                <td>
+                                    @Html.EditorFor(model => model.ItemAdditionalInfo.CarbonHidrates, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.ItemAdditionalInfo.Fats, htmlAttributes: new { @class = "control-label" })</td>
+                                <td>
+                                    @Html.EditorFor(model => model.ItemAdditionalInfo.Fats, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.ItemAdditionalInfo.Fibers, htmlAttributes: new { @class = "control-label" })</td>
+                                <td>
+                                    @Html.EditorFor(model => model.ItemAdditionalInfo.Fibers, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Shrani" class="btn btn-default" />
+                    </div>
+                </div>
+            </section>
+        }
+
+        <div>
+            @Html.ActionLink("Nazaj na seznam", "Index")
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Nazaj na seznam", "Index")
 </div>
 
 @section Scripts {

@@ -3,16 +3,16 @@ namespace WeeklyPlaner.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddManufacturerForItems : DbMigration
+    public partial class AddMealPreparation : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.ItemAdditionalInfo", "Manufacturer", c => c.String());
+            AddColumn("dbo.Meal", "Preparation", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.ItemAdditionalInfo", "Manufacturer");
+            DropColumn("dbo.Meal", "Preparation");
         }
     }
 }

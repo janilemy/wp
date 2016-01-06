@@ -13,7 +13,7 @@ namespace WeeklyPlaner.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201601032017275_InitialCreate"; }
+            get { return "201601041035175_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

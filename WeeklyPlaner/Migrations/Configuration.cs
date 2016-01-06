@@ -61,7 +61,8 @@ namespace WeeklyPlaner.Migrations
                 new Unit { ID = 4, Symbol="g", Name="Gram", UnitTypeId=2},
                 new Unit { ID = 5, Symbol="dag", Name="Dekagram", UnitTypeId=2},
                 new Unit { ID = 6, Symbol="kg", Name="Kilogram", UnitTypeId=2},
-                new Unit { ID = 7, Symbol="kom", Name="Kos", UnitTypeId=3}
+                new Unit { ID = 7, Symbol="kom", Name="Kos", UnitTypeId=3},
+                new Unit { ID = 8, Symbol="Žlica", Name="Žlica", UnitTypeId=3}
             };
 
             units.ForEach(u => context.Unit.AddOrUpdate(u));
@@ -100,7 +101,7 @@ namespace WeeklyPlaner.Migrations
                 new Item { ID = 6, ItemCategoryId=5, Name="Jajce, rumenjak"},
                 new Item { ID = 7, ItemCategoryId=5, Name="Sir, edamec"},
                 new Item { ID = 8, ItemCategoryId=5, Name="Sir, gavda"},
-                new Item { ID = 9, ItemCategoryId=5, Name="Skuta, nepasirana light"},
+                new Item { ID = 9, ItemCategoryId=5, Name="Skuta, nepasirana light", Manufacturer="Spar"},
                 new Item { ID = 10, ItemCategoryId=8, Name="Ovseni kosmièi"},
                 new Item { ID = 11, ItemCategoryId=3, Name="Pišèanec, prsa"},
                 new Item { ID = 12, ItemCategoryId=3, Name="Puran, prsa"},
@@ -122,7 +123,7 @@ namespace WeeklyPlaner.Migrations
                 new Item { ID = 28, ItemCategoryId=2, Name="Fižol, beli"},
                 new Item { ID = 29, ItemCategoryId=2, Name="Fižol, rumeni"},
                 new Item { ID = 30, ItemCategoryId=2, Name="Èièerika"},
-                new Item { ID = 31, ItemCategoryId=2, Name="Arašidovo maslo"},
+                new Item { ID = 31, ItemCategoryId=2, Name="Arašidovo maslo", Manufacturer="Roks"},
                 new Item { ID = 32, ItemCategoryId=7, Name="Tortilije, koruzne"},
                 new Item { ID = 33, ItemCategoryId=7, Name="Kruh, rženi"},
                 new Item { ID = 34, ItemCategoryId=9, Name="Riž, rjav"},
@@ -142,7 +143,11 @@ namespace WeeklyPlaner.Migrations
                 new Item { ID = 48, ItemCategoryId=11, Name="Origano"},
                 new Item { ID = 49, ItemCategoryId=11, Name="Bazilika"},
                 new Item { ID = 50, ItemCategoryId=11, Name="Majaron"},
-                new Item { ID = 51, ItemCategoryId=11, Name="Lovorjev list"}
+                new Item { ID = 51, ItemCategoryId=11, Name="Lovorjev list"},
+                new Item { ID = 52, ItemCategoryId=2, Name="Kokošja kocka"},
+                new Item { ID = 53, ItemCategoryId=5, Name="Smetana za kuhanje"},
+                new Item { ID = 54, ItemCategoryId=6, Name="Olje, arašidovo"},
+                new Item { ID = 55, ItemCategoryId=2, Name="Mešanica za gobovo omako, Knorr Fix"}
                 //new Item { ID = , ItemCategoryId=, Name="" }
             };
 
@@ -161,8 +166,8 @@ namespace WeeklyPlaner.Migrations
                 new ItemAdditionalInfo { ID = 8, ItemId=6, Quantity=100, UnitId=4, Calories=322, Protein=15.86, CarbonHidrates=3.59, Fats=26.54, Fibers=0 },
                 new ItemAdditionalInfo { ID = 9, ItemId=7, Quantity=100, UnitId=4, Calories=357, Protein=24.99, CarbonHidrates=1.43, Fats=27.8, Fibers=0 },
                 new ItemAdditionalInfo { ID = 10, ItemId=8, Quantity=100, UnitId=4, Calories=356, Protein=24.94, CarbonHidrates=2.22, Fats=27.44, Fibers=0 },
-                new ItemAdditionalInfo { ID = 11, ItemId=9, Quantity=100, UnitId=4, Calories=70, Protein=13, CarbonHidrates=3, Fats=0, Fibers=0, Manufacturer= "Spar" },
-                new ItemAdditionalInfo { ID = 12, ItemId=10, Quantity=100, UnitId=4, Calories=372, Protein=13.5, CarbonHidrates=58.7, Fats=7, Fibers=10, Manufacturer="Hofer"},
+                new ItemAdditionalInfo { ID = 11, ItemId=9, Quantity=100, UnitId=4, Calories=70, Protein=13, CarbonHidrates=3, Fats=0, Fibers=0, Shop="Spar"},
+                new ItemAdditionalInfo { ID = 12, ItemId=10, Quantity=100, UnitId=4, Calories=372, Protein=13.5, CarbonHidrates=58.7, Fats=7, Fibers=10, Shop="Hofer", Price=0.49m},
                 new ItemAdditionalInfo { ID = 13, ItemId=11, Quantity=100, UnitId=4, Calories=110, Protein=23.09, CarbonHidrates=0, Fats=1.24, Fibers=0},
                 new ItemAdditionalInfo { ID = 14, ItemId=12, Quantity=100, UnitId=4, Calories=115, Protein=23.56, CarbonHidrates=0, Fats=1.56, Fibers=0},
                 new ItemAdditionalInfo { ID = 15, ItemId=13, Quantity=100, UnitId=4, Calories=254, Protein=17.17, CarbonHidrates=0, Fats=20, Fibers=0},
@@ -183,14 +188,14 @@ namespace WeeklyPlaner.Migrations
                 new ItemAdditionalInfo { ID = 30, ItemId=28, Quantity=100, UnitId=4, Calories=139, Protein=9.73, CarbonHidrates=25.09, Fats=0.35, Fibers=6.3 },
                 new ItemAdditionalInfo { ID = 31, ItemId=29, Quantity=100, UnitId=4, Calories=144, Protein=9.16, CarbonHidrates=25.27, Fats=1.08, Fibers=10.4 },
                 new ItemAdditionalInfo { ID = 32, ItemId=30, Quantity=100, UnitId=4, Calories=164, Protein=8.86, CarbonHidrates=27.42, Fats=2.59, Fibers=7.6 },
-                new ItemAdditionalInfo { ID = 33, ItemId=31, Quantity=100, UnitId=4, Calories=588, Protein=25.09, CarbonHidrates=19.56, Fats=50.39, Fibers=6, Manufacturer="Roks" },
+                new ItemAdditionalInfo { ID = 33, ItemId=31, Quantity=100, UnitId=4, Calories=588, Protein=25.09, CarbonHidrates=19.56, Fats=50.39, Fibers=6 },
                 new ItemAdditionalInfo { ID = 34, ItemId=32, Quantity=100, UnitId=4, Calories=218, Protein=5.7, CarbonHidrates=44.64, Fats=2.85, Fibers=6.3 },
                 new ItemAdditionalInfo { ID = 35, ItemId=33, Quantity=100, UnitId=4, Calories=258, Protein=8.5, CarbonHidrates=48.3, Fats=3.3, Fibers=5.8 },
                 new ItemAdditionalInfo { ID = 36, ItemId=34, Quantity=100, UnitId=4, Calories=111, Protein=2.58, CarbonHidrates=22.96, Fats=0.9, Fibers=1.8 },
                 new ItemAdditionalInfo { ID = 37, ItemId=35, Quantity=100, UnitId=4, Calories=130, Protein=2.69, CarbonHidrates=28.17, Fats=0.28, Fibers=0.4 },
                 new ItemAdditionalInfo { ID = 38, ItemId=36, Quantity=100, UnitId=4, Calories=124, Protein=5.33, CarbonHidrates=26.54, Fats=0.54, Fibers=2.8 },
                 new ItemAdditionalInfo { ID = 39, ItemId=37, Quantity=100, UnitId=4, Calories=124, Protein=5.33, CarbonHidrates=26.54, Fats=0.54, Fibers=4.5 },
-                new ItemAdditionalInfo { ID = 40, ItemId=38, Quantity=100 , UnitId=4 , Calories=365, Protein=24.8, CarbonHidrates=1.1, Fats=29, Fibers=0, Manufacturer= "Hofer" }
+                new ItemAdditionalInfo { ID = 40, ItemId=38, Quantity=100 , UnitId=4 , Calories=365, Protein=24.8, CarbonHidrates=1.1, Fats=29, Fibers=0, Shop="Hofer" }
                 //new ItemAdditionalInfo { ID = , ItemId=, Quantity= , UnitId= , Calories=, Protein=, CarbonHidrates=, Fats=, Fibers=0, Manufacturer= "" }
             };
 
@@ -209,7 +214,8 @@ namespace WeeklyPlaner.Migrations
                 new Meal { ID=7, UserID=1, Title="Orešèki, pest"},
                 new Meal { ID=8, UserID=1, Title="Grški jogurt, jabolka, cimet in orešèki"},
                 new Meal { ID=9, UserID=1, Title="Èokolino fitness in whey"},
-                new Meal { ID=10, UserID=1, Title="Makaroni s pišèanèjim mesom"}
+                new Meal { ID=10, UserID=1, Title="Makaroni s pišèanèjim mesom"},
+                new Meal { ID=11, UserID=1, Title="Pišèanèji ragu z grahom", ImagePath="~/Content/Images/Meals/11.png"}
             };
 
             meals.ForEach(m => context.Meal.AddOrUpdate(m));
@@ -236,11 +242,28 @@ namespace WeeklyPlaner.Migrations
                 new MealItem { ID=16, MealId=10, ItemId=48 },
                 new MealItem { ID=17, MealId=10, ItemId=49 },
                 new MealItem { ID=18, MealId=10, ItemId=50 },
-                new MealItem { ID=19, MealId=10, ItemId=51 }
+                new MealItem { ID=19, MealId=10, ItemId=51 },
+                new MealItem { ID=20, MealId=11, ItemId=11, UnitId=4, Quantity=400 },
+                new MealItem { ID=20, MealId=11, ItemId=52, UnitId=7, Quantity=1 },       
+                new MealItem { ID=20, MealId=11, ItemId=55, UnitId=7, Quantity=1},       
+                new MealItem { ID=20, MealId=11, ItemId=17, UnitId=4, Quantity=200 },
+                new MealItem { ID=20, MealId=11, ItemId=53, UnitId=1, Quantity=100 },
+                new MealItem { ID=20, MealId=11, ItemId=54, UnitId=8, Quantity=2 },
+                new MealItem { ID=20, MealId=11, ItemId=39, UnitId=4, Quantity=60 },
+                new MealItem { ID=20, MealId=11, ItemId=49 },                                          
                 //new MealItem { ID=, MealId=, ItemId=, UnitId=, Quantity= }
             };
 
             mealItems.ForEach(mi => context.MealItem.AddOrUpdate(mi));
+            context.SaveChanges();
+
+            var mealPreparation = new List<MealPreparation>
+            {
+                new MealPreparation { ID=10, Preparation="Pišèanèje fileje narežemo na kocke in jih na vroèem olju popražimo. Dodamo sol, poper, malo vegete, lovorov list in timijan. Meso shranimo na toplem. Na istem olju prepražimo èebulo in èesen ter dodamo na kocke narezano rdeèo papriko, ponovno malo posolimo. Meso vrnemo v ponev k ostalim sestavinam in pražimo, dokler paprika ni mehka. Nato dodamo paradižnikovo omako ter origano in baziliko (ostale zaèimbe po potrebi) in kuhamo na zmernem ognju še 15 minut. Vmes skuhamo makarone, po navodilih iz embalaže, oziroma po okusu."},
+                new MealPreparation { ID=11, Preparation="Na vroèem olju prepražimo sesekljano èebulo. Pišèanèje prsi narežemo na kocke. Gobe oèistimo in narežemo na primerne manjše kose. Meso in gobe dodamo k èebuli ter zaèinimo s Knorr kokošjo kocko in pražimo 2-3 minuti. Dodamo grah.Knorr Fix mešanico zmešamo z 2 dl vode in smetano. Dodamo k raguju in kuhamo 10 minut. Dodamo sveže narezano baziliko in poper po okusu."}
+            };
+
+            mealPreparation.ForEach(mp => context.MealPreparation.AddOrUpdate(mp));
             context.SaveChanges();
 
             var mealAdditionalInfo = new List<MealAdditionalInfo>
@@ -254,14 +277,14 @@ namespace WeeklyPlaner.Migrations
 
             var planer = new List<Planer>
             {
-                new Planer { ID=1, PlanedOn= new DateTime(2016, 1, 3) },
-                new Planer { ID=2, PlanedOn= new DateTime(2016, 1, 4) },
-                new Planer { ID=3, PlanedOn= new DateTime(2016, 1, 5) },
-                new Planer { ID=4, PlanedOn= new DateTime(2016, 1, 6) },
-                new Planer { ID=5, PlanedOn= new DateTime(2016, 1, 7) },
-                new Planer { ID=6, PlanedOn= new DateTime(2016, 1, 8) },
-                new Planer { ID=7, PlanedOn= new DateTime(2016, 1, 9) },
-                new Planer { ID=8, PlanedOn= new DateTime(2016, 1, 10) }
+                new Planer { ID=1, PlanedOn= new DateTime(2016, 1, 4) },
+                new Planer { ID=2, PlanedOn= new DateTime(2016, 1, 5) },
+                new Planer { ID=3, PlanedOn= new DateTime(2016, 1, 6) },
+                new Planer { ID=4, PlanedOn= new DateTime(2016, 1, 7) },
+                new Planer { ID=5, PlanedOn= new DateTime(2016, 1, 8) },
+                new Planer { ID=6, PlanedOn= new DateTime(2016, 1, 9) },
+                new Planer { ID=7, PlanedOn= new DateTime(2016, 1, 10) },
+                new Planer { ID=8, PlanedOn= new DateTime(2016, 1, 11) }
             };
 
             planer.ForEach(p => context.Planer.AddOrUpdate(p));
@@ -269,20 +292,22 @@ namespace WeeklyPlaner.Migrations
 
             var planerMeals = new List<PlanerMeals>
             {
-                new PlanerMeals { PlanerId=1, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerId=1, MealId=2, CourseId=1 },
-                new PlanerMeals { PlanerId=1, MealId=7, CourseId=2 },
-                new PlanerMeals { PlanerId=1, MealId=5, CourseId=3 },
-                new PlanerMeals { PlanerId=1, MealId=6, CourseId=4 },
-                new PlanerMeals { PlanerId=1, MealId=9, CourseId=6 },
-                new PlanerMeals { PlanerId=1, MealId=5, CourseId=7 },
-                new PlanerMeals { PlanerId=2, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerId=2, MealId=2, CourseId=1 },
-                new PlanerMeals { PlanerId=2, MealId=7, CourseId=2 },
-                new PlanerMeals { PlanerId=2, MealId=3, CourseId=3 },
-                new PlanerMeals { PlanerId=2, MealId=6, CourseId=4 },
-                new PlanerMeals { PlanerId=2, MealId=9, CourseId=6 },
-                new PlanerMeals { PlanerId=2, MealId=3, CourseId=7 }
+                new PlanerMeals { PlanerMealsId=1, PlanerId=1, MealId=1, CourseId=1 },    
+                new PlanerMeals { PlanerMealsId=2, PlanerId=1, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=3, PlanerId=1, MealId=5, CourseId=3 },
+                new PlanerMeals { PlanerMealsId=4, PlanerId=1, MealId=6, CourseId=4 },
+                new PlanerMeals { PlanerMealsId=5, PlanerId=1, MealId=9, CourseId=6 },
+                new PlanerMeals { PlanerMealsId=6, PlanerId=1, MealId=5, CourseId=7 },
+                new PlanerMeals { PlanerMealsId=7, PlanerId=2, MealId=1, CourseId=1 },    
+                new PlanerMeals { PlanerMealsId=8, PlanerId=2, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=9, PlanerId=2, MealId=3, CourseId=3 },
+                new PlanerMeals { PlanerMealsId=10, PlanerId=2, MealId=6, CourseId=4 },
+                new PlanerMeals { PlanerMealsId=11, PlanerId=2, MealId=9, CourseId=6 },
+                new PlanerMeals { PlanerMealsId=12, PlanerId=2, MealId=3, CourseId=7 },
+                new PlanerMeals { PlanerMealsId=13, PlanerId=3, MealId=1, CourseId=1 },    
+                new PlanerMeals { PlanerMealsId=14, PlanerId=3, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=15, PlanerId=3, MealId=11, CourseId=3 }             
+                
             };
 
             planerMeals.ForEach(pm => context.PlanerMeals.AddOrUpdate(pm));
