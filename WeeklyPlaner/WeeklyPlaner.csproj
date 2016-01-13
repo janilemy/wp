@@ -161,9 +161,9 @@
     <Compile Include="Migrations\201601061132578_AddImagePathToMeal.Designer.cs">
       <DependentUpon>201601061132578_AddImagePathToMeal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601062208323_AddShoppingListData.cs" />
-    <Compile Include="Migrations\201601062208323_AddShoppingListData.Designer.cs">
-      <DependentUpon>201601062208323_AddShoppingListData.cs</DependentUpon>
+    <Compile Include="Migrations\201601062325004_AddShoppingListData.cs" />
+    <Compile Include="Migrations\201601062325004_AddShoppingListData.Designer.cs">
+      <DependentUpon>201601062325004_AddShoppingListData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Item.cs" />
@@ -198,9 +198,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.sl.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShoppingListsController.cs" />
+    <Compile Include="Controllers\ShoppingListsController.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MealViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -233,8 +234,8 @@
     <EmbeddedResource Include="Migrations\201601061132578_AddImagePathToMeal.resx">
       <DependentUpon>201601061132578_AddImagePathToMeal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601062208323_AddShoppingListData.resx">
-      <DependentUpon>201601062208323_AddShoppingListData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601062325004_AddShoppingListData.resx">
+      <DependentUpon>201601062325004_AddShoppingListData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Home\Home.sl.resx" />
     <EmbeddedResource Include="Resources\Views\Items\Items.sl.resx">
@@ -300,7 +301,6 @@
     <Content Include="Views\Meals\Details.cshtml" />
     <Content Include="Views\ShoppingLists\Create.cshtml" />
     <Content Include="Views\ShoppingLists\Delete.cshtml" />
-    <Content Include="Views\ShoppingLists\Details.cshtml" />
     <Content Include="Views\ShoppingLists\Edit.cshtml" />
     <Content Include="Views\ShoppingLists\Index.cshtml" />
   </ItemGroup>

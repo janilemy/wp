@@ -147,7 +147,9 @@ namespace WeeklyPlaner.Migrations
                 new Item { ID = 52, ItemCategoryId=2, Name="Kokošja kocka"},
                 new Item { ID = 53, ItemCategoryId=5, Name="Smetana za kuhanje"},
                 new Item { ID = 54, ItemCategoryId=6, Name="Olje, arašidovo"},
-                new Item { ID = 55, ItemCategoryId=2, Name="Mešanica za gobovo omako, Knorr Fix"}
+                new Item { ID = 55, ItemCategoryId=2, Name="Mešanica za gobovo omako, Knorr Fix"},
+                new Item { ID = 56, ItemCategoryId=3, Name="Govedina, zrezki"},
+                new Item { ID = 57, ItemCategoryId=2, Name="Grah, korenje"}
                 //new Item { ID = , ItemCategoryId=, Name="" }
             };
 
@@ -195,7 +197,9 @@ namespace WeeklyPlaner.Migrations
                 new ItemAdditionalInfo { ID = 37, ItemId=35, Quantity=100, UnitId=4, Calories=130, Protein=2.69, CarbonHidrates=28.17, Fats=0.28, Fibers=0.4 },
                 new ItemAdditionalInfo { ID = 38, ItemId=36, Quantity=100, UnitId=4, Calories=124, Protein=5.33, CarbonHidrates=26.54, Fats=0.54, Fibers=2.8 },
                 new ItemAdditionalInfo { ID = 39, ItemId=37, Quantity=100, UnitId=4, Calories=124, Protein=5.33, CarbonHidrates=26.54, Fats=0.54, Fibers=4.5 },
-                new ItemAdditionalInfo { ID = 40, ItemId=38, Quantity=100 , UnitId=4 , Calories=365, Protein=24.8, CarbonHidrates=1.1, Fats=29, Fibers=0, Shop="Hofer" }
+                new ItemAdditionalInfo { ID = 40, ItemId=38, Quantity=100 , UnitId=4 , Calories=365, Protein=24.8, CarbonHidrates=1.1, Fats=29, Fibers=0, Shop="Hofer" },
+                new ItemAdditionalInfo { ID = 41, ItemId=55, Quantity=100, UnitId=4, Calories=110, Protein=23.09, CarbonHidrates=0, Fats=1.24, Fibers=0, Shop="Hofer" },
+                new ItemAdditionalInfo { ID = 42, ItemId=56, Quantity=100, UnitId=4, Calories=42, Protein=3, CarbonHidrates=5, Fats=1, Fibers=4, Shop="Hofer" }
                 //new ItemAdditionalInfo { ID = , ItemId=, Quantity= , UnitId= , Calories=, Protein=, CarbonHidrates=, Fats=, Fibers=0, Manufacturer= "" }
             };
 
@@ -313,6 +317,25 @@ namespace WeeklyPlaner.Migrations
             };
 
             planerMeals.ForEach(pm => context.PlanerMeals.AddOrUpdate(pm));
+            context.SaveChanges();
+
+            List<ShoppingListItem> firstShoppingListItems = new List<ShoppingListItem>();
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 1, ShoppingListId = 1, ItemId = 1, Quantity = 200, UnitId = 4 });
+
+            List<ShoppingListItem> secondShoppingListItems = new List<ShoppingListItem>();
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 1, ShoppingListId = 2, ItemId = 3, Quantity = 125, UnitId = 4 });
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 2, ShoppingListId=2, ItemId = 4, Quantity = 12, UnitId = 7 });
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 3, ShoppingListId = 2, ItemId = 55, Quantity = 500, UnitId = 4 });
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 4, ShoppingListId = 2, ItemId = 56, Quantity = 500, UnitId = 4 });
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 5, ShoppingListId = 2, ItemId = 38, Quantity = 300, UnitId = 4 });
+
+            var shoppingLists = new List<ShoppingList>
+            {
+                new ShoppingList { ID=1, Timestamp=DateTime.Now.AddDays(-6), ShoppingListItems = firstShoppingListItems },
+                new ShoppingList { ID=2, Timestamp=DateTime.Now, ShoppingListItems = secondShoppingListItems }
+            };
+
+            shoppingLists.ForEach(sl => context.ShoppingLists.AddOrUpdate(sl));
             context.SaveChanges();
         }
     }

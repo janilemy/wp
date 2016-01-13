@@ -24,6 +24,7 @@ namespace WeeklyPlaner.Models
         public virtual ICollection<ItemAdditionalInfo> ItemAdditionalInfo { get; set; }
         public virtual ICollection<MealItem> MealItem { get; set; }
         public virtual ICollection<FavouriteItem> FavouriteItem { get; set; }
+        public virtual ICollection<ShoppingList> ShoppingList { get; set; }
     }
 
     /// <summary>

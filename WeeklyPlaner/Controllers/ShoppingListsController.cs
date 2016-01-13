@@ -17,23 +17,8 @@ namespace WeeklyPlaner
 
         // GET: ShoppingLists
         public ActionResult Index()
-        {
-            return View(db.ShoppingLists.ToList());
-        }
-
-        // GET: ShoppingLists/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ShoppingList shoppingList = db.ShoppingLists.Find(id);
-            if (shoppingList == null)
-            {
-                return HttpNotFound();
-            }
-            return View(shoppingList);
+        {            
+            return View(db.ShoppingLists.OrderByDescending(sl => sl.Timestamp).FirstOrDefault());
         }
 
         // GET: ShoppingLists/Create

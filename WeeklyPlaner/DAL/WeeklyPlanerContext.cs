@@ -25,7 +25,9 @@ namespace WeeklyPlaner.DAL
         public DbSet<MealAdditionalInfo> MealAdditionalInfo { get; set; }        
         public DbSet<Planer> Planer { get; set; }
         public DbSet<PlanerMeals> PlanerMeals { get; set; }
-        public DbSet<Course> Course { get; set; }                            
+        public DbSet<Course> Course { get; set; }       
+        public DbSet<ShoppingList> ShoppingLists {get; set;}
+        public DbSet<ShoppingListItem> ShoppingListItems { get; set; }             
 
         //public DbSet<Advanced> Advanced { get; set; }
 
@@ -35,8 +37,6 @@ namespace WeeklyPlaner.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             // CONFIGURE MODEL WITH FLUENT API
-        }
-
-        public System.Data.Entity.DbSet<WeeklyPlaner.Models.ShoppingList> ShoppingLists { get; set; }
+        }        
     }
 }

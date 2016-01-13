@@ -1,34 +1,30 @@
-﻿@model IEnumerable<WeeklyPlaner.Models.ShoppingList>
+﻿@model WeeklyPlaner.Models.ShoppingList
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nakupovalni listek";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Nakupovalni listek</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Timestamp)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Timestamp)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+<table class="table table-bordered">
+    @foreach (var item in Model.ShoppingListItems)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(mealItem => item.Quantity)
+                @Html.DisplayFor(mealItem => item.Unit.Symbol)
+            </td>
+            <td>
+                @Html.DisplayFor(mealItem => item.Item.Name)
+            </td>
+        </tr>
+    }
 </table>
+
+<section class="footer">
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |        
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+    </div>
+</section>

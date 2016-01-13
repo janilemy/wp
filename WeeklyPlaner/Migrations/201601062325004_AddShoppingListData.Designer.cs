@@ -13,7 +13,7 @@ namespace WeeklyPlaner.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201601062208323_AddShoppingListData"; }
+            get { return "201601062325004_AddShoppingListData"; }
         }
         
         string IMigrationMetadata.Source
