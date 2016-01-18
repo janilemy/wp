@@ -18,7 +18,7 @@ namespace WeeklyPlaner.Models
         [Display(Name = "Izdelek")]
         public string Name { get; set; }
         [Display(Name = "Proizvajalec")]
-        public string Manufacturer { get; set; }         
+        public string Manufacturer { get; set; }                
 
         public virtual ItemCategory ItemCategory { get; set; }
         public virtual ICollection<ItemAdditionalInfo> ItemAdditionalInfo { get; set; }

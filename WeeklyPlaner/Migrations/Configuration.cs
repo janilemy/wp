@@ -219,7 +219,15 @@ namespace WeeklyPlaner.Migrations
                 new Meal { ID=8, UserID=1, Title="Grški jogurt, jabolka, cimet in orešèki"},
                 new Meal { ID=9, UserID=1, Title="Èokolino fitness in whey", ImagePath="~/Content/Images/Meals/9.jpg"},
                 new Meal { ID=10, UserID=1, Title="Makaroni s pišèanèjim mesom", ImagePath="~/Content/Images/Meals/10.jpg"},
-                new Meal { ID=11, UserID=1, Title="Pišèanèji ragu z grahom", ImagePath="~/Content/Images/Meals/11.jpg"}
+                new Meal { ID=11, UserID=1, Title="Pišèanèji ragu z grahom", ImagePath="~/Content/Images/Meals/11.jpg"},
+
+                // Sestavine še niso dodeljene
+                new Meal { ID=12, UserID=1, Title="Pišèanèje prsi v curry omaki", ImagePath="~/Content/Images/Meals/12.jpg"},
+                new Meal { ID=13, UserID=1, Title="Pišèanèje prsi v nacho omaki", ImagePath="~/Content/Images/Meals/13.jpg"},
+                new Meal { ID=14, UserID=1, Title="Pišèanèje prsi v naravni omaki", ImagePath="~/Content/Images/Meals/14.jpg"},
+                new Meal { ID=15, UserID=1, Title="Pišèanèje prsi v sirovi omaki", ImagePath="~/Content/Images/Meals/15.jpg"},
+                new Meal { ID=16, UserID=1, Title="Sendviè z pišèanèjo posebno in sirom", ImagePath="~/Content/Images/Meals/16.jpg"}
+                //new Meal { ID=, UserID=1, Title="", ImagePath="~/Content/Images/Meals/12.jpg"}
             };
 
             meals.ForEach(m => context.Meal.AddOrUpdate(m));
@@ -264,7 +272,9 @@ namespace WeeklyPlaner.Migrations
             var mealPreparation = new List<MealPreparation>
             {
                 new MealPreparation { ID=10, Preparation="Pišèanèje fileje narežemo na kocke in jih na vroèem olju popražimo. Dodamo sol, poper, malo vegete, lovorov list in timijan. Meso shranimo na toplem. Na istem olju prepražimo èebulo in èesen ter dodamo na kocke narezano rdeèo papriko, ponovno malo posolimo. Meso vrnemo v ponev k ostalim sestavinam in pražimo, dokler paprika ni mehka. Nato dodamo paradižnikovo omako ter origano in baziliko (ostale zaèimbe po potrebi) in kuhamo na zmernem ognju še 15 minut. Vmes skuhamo makarone, po navodilih iz embalaže, oziroma po okusu."},
-                new MealPreparation { ID=11, Preparation="Na vroèem olju prepražimo sesekljano èebulo. Pišèanèje prsi narežemo na kocke. Gobe oèistimo in narežemo na primerne manjše kose. Meso in gobe dodamo k èebuli ter zaèinimo s Knorr kokošjo kocko in pražimo 2-3 minuti. Dodamo grah.Knorr Fix mešanico zmešamo z 2 dl vode in smetano. Dodamo k raguju in kuhamo 10 minut. Dodamo sveže narezano baziliko in poper po okusu."}
+                new MealPreparation { ID=11, Preparation="Na vroèem olju prepražimo sesekljano èebulo. Pišèanèje prsi narežemo na kocke. Gobe oèistimo in narežemo na primerne manjše kose. Meso in gobe dodamo k èebuli ter zaèinimo s Knorr kokošjo kocko in pražimo 2-3 minuti. Dodamo grah.Knorr Fix mešanico zmešamo z 2 dl vode in smetano. Dodamo k raguju in kuhamo 10 minut. Dodamo sveže narezano baziliko in poper po okusu."},
+                new MealPreparation { ID=12, Preparation="Pripravimo si pišèanèje prsi narezane na kocke, smetano za kuhanje, curry zaèimbo, poper, zaèimbo za pišèanèje meso. V posodo damo malo olja in popeèemo meso, ki ga zaèinimo z zaèimbo za meso in poprom. Ko je meso peèeno ga zalijemo z malo vode, ki jo zaèinimo z curry zaèimbo in pustimo še pustimo nekaj minut vret. Nato po potrebi še dodamo vodo, ali pa kar dodamo smetano za kuhanje in še po potrebi zaèinimo z curryjem in poprom. Ko se omaka malo zgosti je jed gotova."},
+                new MealPreparation { ID=13, Preparation="Pripravimo si pišèanèje prsi narezane na kocke, smetano za kuhanje, nacho sir, poper, zaèimbo za pišèanèje meso. V posodo damo malo olja in popeèemo meso, ki ga zaèinimo z zaèimbo za meso in poprom. Ko je meso peèeno ga zalijemo z malo vode in pustimo še pustimo nekaj minut vret. Nato po potrebi še dodamo vodo, ali pa kar dodamo smetano za kuhanje, nacho sir in poper. Omako še nekaj minut mešamo, ko se omaka zgosti je jed gotova."}
             };
 
             mealPreparation.ForEach(mp => context.MealPreparation.AddOrUpdate(mp));
@@ -288,7 +298,8 @@ namespace WeeklyPlaner.Migrations
                 new Planer { ID=5, PlanedOn= new DateTime(2016, 1, 8) },
                 new Planer { ID=6, PlanedOn= new DateTime(2016, 1, 9) },
                 new Planer { ID=7, PlanedOn= new DateTime(2016, 1, 10) },
-                new Planer { ID=8, PlanedOn= new DateTime(2016, 1, 11) }
+                new Planer { ID=8, PlanedOn= new DateTime(2016, 1, 11) },
+                new Planer { ID=9, PlanedOn= new DateTime(2016, 1, 18) }
             };
 
             planer.ForEach(p => context.Planer.AddOrUpdate(p));
@@ -312,7 +323,10 @@ namespace WeeklyPlaner.Migrations
                 new PlanerMeals { PlanerMealsId=12, PlanerId=3, MealId=2, CourseId=1 },                
                 new PlanerMeals { PlanerMealsId=13, PlanerId=3, MealId=11, CourseId=3 },                
                 new PlanerMeals { PlanerMealsId=14, PlanerId=3, MealId=11, CourseId=5 },
-                new PlanerMeals { PlanerMealsId=15, PlanerId=3, MealId=6, CourseId=7 }
+                new PlanerMeals { PlanerMealsId=15, PlanerId=3, MealId=6, CourseId=7 },
+                new PlanerMeals { PlanerMealsId=16, PlanerId=4, MealId=1, CourseId=1 },
+                new PlanerMeals { PlanerMealsId=16, PlanerId=4, MealId=16, CourseId=3 },
+                new PlanerMeals { PlanerMealsId=16, PlanerId=4, MealId=12, CourseId=4 }
                 
             };
 
