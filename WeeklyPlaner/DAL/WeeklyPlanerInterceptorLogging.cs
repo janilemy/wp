@@ -1,12 +1,6 @@
-﻿using System;
-using System.Data.Common;
-using System.Data.Entity;
+﻿using System.Data.Common;
 using System.Data.Entity.Infrastructure.Interception;
-using System.Data.Entity.SqlServer;
-using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Reflection;
-using System.Linq;
 using WeeklyPlaner.Logging;
 
 namespace WeeklyPlaner.DAL
@@ -14,9 +8,9 @@ namespace WeeklyPlaner.DAL
     public class WeeklyPlanerInterceptorLogging : DbCommandInterceptor
     {
         /*
-         * For successful queries or commands, this code writes an Information log with latency information. 
-         * For exceptions, it creates an Error log. 
-        */ 
+         * For successful queries or commands, this code writes an Information log with latency information.
+         * For exceptions, it creates an Error log.
+        */
 
         private ILogger _logger = new Logger();
         private readonly Stopwatch _stopwatch = new Stopwatch();

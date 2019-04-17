@@ -23,6 +23,7 @@ namespace WeeklyPlaner.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         UserID = c.Int(nullable: false),
                         Title = c.String(),
+                        ImagePath = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -139,6 +140,49 @@ namespace WeeklyPlaner.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.ShoppingList",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Timestamp = c.DateTime(nullable: false),
+                        Item_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Item", t => t.Item_ID)
+                .Index(t => t.Item_ID);
+            
+            CreateTable(
+                "dbo.ShoppingListItem",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        ShoppingListId = c.Int(nullable: false),
+                        ItemId = c.Int(nullable: false),
+                        Quantity = c.Double(nullable: false),
+                        UnitId = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Item", t => t.ItemId, cascadeDelete: true)
+                .ForeignKey("dbo.ShoppingList", t => t.ShoppingListId, cascadeDelete: true)
+                .ForeignKey("dbo.Unit", t => t.UnitId)
+                .Index(t => t.ShoppingListId)
+                .Index(t => t.ItemId)
+                .Index(t => t.UnitId);
+            
+            CreateTable(
+                "dbo.MealPreparation",
+                c => new
+                    {
+                        ID = c.Int(nullable: false),
+                        ActivePreparationTime = c.Int(),
+                        PasivePreparationTime = c.Int(),
+                        Preparation = c.String(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Meal", t => t.ID)
+                .Index(t => t.ID);
+            
+            CreateTable(
                 "dbo.Planer",
                 c => new
                     {
@@ -192,7 +236,12 @@ namespace WeeklyPlaner.Migrations
             DropForeignKey("dbo.PlanerMeals", "PlanerId", "dbo.Planer");
             DropForeignKey("dbo.PlanerMeals", "MealId", "dbo.Meal");
             DropForeignKey("dbo.PlanerMeals", "CourseId", "dbo.Course");
+            DropForeignKey("dbo.MealPreparation", "ID", "dbo.Meal");
             DropForeignKey("dbo.MealItem", "MealId", "dbo.Meal");
+            DropForeignKey("dbo.ShoppingList", "Item_ID", "dbo.Item");
+            DropForeignKey("dbo.ShoppingListItem", "UnitId", "dbo.Unit");
+            DropForeignKey("dbo.ShoppingListItem", "ShoppingListId", "dbo.ShoppingList");
+            DropForeignKey("dbo.ShoppingListItem", "ItemId", "dbo.Item");
             DropForeignKey("dbo.MealItem", "ItemId", "dbo.Item");
             DropForeignKey("dbo.Item", "ItemCategoryId", "dbo.ItemCategory");
             DropForeignKey("dbo.Unit", "UnitTypeId", "dbo.UnitType");
@@ -210,6 +259,11 @@ namespace WeeklyPlaner.Migrations
             DropIndex("dbo.PlanerMeals", new[] { "PlanerId" });
             DropIndex("dbo.Planer", new[] { "Course_ID" });
             DropIndex("dbo.Planer", new[] { "Meal_ID" });
+            DropIndex("dbo.MealPreparation", new[] { "ID" });
+            DropIndex("dbo.ShoppingListItem", new[] { "UnitId" });
+            DropIndex("dbo.ShoppingListItem", new[] { "ItemId" });
+            DropIndex("dbo.ShoppingListItem", new[] { "ShoppingListId" });
+            DropIndex("dbo.ShoppingList", new[] { "Item_ID" });
             DropIndex("dbo.Unit", new[] { "UnitTypeId" });
             DropIndex("dbo.ItemAdditionalInfo", new[] { "ItemId" });
             DropIndex("dbo.ItemAdditionalInfo", new[] { "UnitId" });
@@ -222,6 +276,9 @@ namespace WeeklyPlaner.Migrations
             DropTable("dbo.MealCourse");
             DropTable("dbo.PlanerMeals");
             DropTable("dbo.Planer");
+            DropTable("dbo.MealPreparation");
+            DropTable("dbo.ShoppingListItem");
+            DropTable("dbo.ShoppingList");
             DropTable("dbo.ItemCategory");
             DropTable("dbo.UnitType");
             DropTable("dbo.Unit");

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using WeeklyPlaner.Models;
 
 namespace WeeklyPlaner.DAL
@@ -35,11 +32,11 @@ namespace WeeklyPlaner.DAL
             var units = new List<Unit>
             {
                 new Unit { Symbol="ml", Name="Mililiter", UnitTypeId=1},
-                new Unit { Symbol="l", Name="Liter", UnitTypeId=1},                
+                new Unit { Symbol="l", Name="Liter", UnitTypeId=1},
                 new Unit { Symbol="mg", Name="Miligram", UnitTypeId=2},
                 new Unit { Symbol="g", Name="Gram", UnitTypeId=2},
                 new Unit { Symbol="dag", Name="Dekagram", UnitTypeId=2},
-                new Unit { Symbol="kg", Name="Kilogram", UnitTypeId=2}                
+                new Unit { Symbol="kg", Name="Kilogram", UnitTypeId=2}
             };
 
             units.ForEach(u => context.Unit.Add(u));
@@ -53,7 +50,7 @@ namespace WeeklyPlaner.DAL
                 new ItemCategory { Category="Meso" },
                 new ItemCategory { Category="Mlečni izdelki" },
                 new ItemCategory { Category="Olja in maščobe" },
-                new ItemCategory { Category="Testenine in kosmiči" },                
+                new ItemCategory { Category="Testenine in kosmiči" },
                 new ItemCategory { Category="Riž" },
                 new ItemCategory { Category="Oreščki in semena" },
                 new ItemCategory { Category="Zelišča" },
@@ -62,7 +59,7 @@ namespace WeeklyPlaner.DAL
             };
 
             itemCategories.ForEach(ic => context.ItemCategory.Add(ic));
-            context.SaveChanges();                
+            context.SaveChanges();
 
             // Set default meals
             var meals = new List<Meal>

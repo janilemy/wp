@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WeeklyPlaner.DAL;
 using WeeklyPlaner.Models;
@@ -17,7 +14,7 @@ namespace WeeklyPlaner
 
         // GET: ShoppingLists
         public ActionResult Index()
-        {            
+        {
             return View(db.ShoppingLists.OrderByDescending(sl => sl.Timestamp).FirstOrDefault());
         }
 
@@ -28,7 +25,7 @@ namespace WeeklyPlaner
         }
 
         // POST: ShoppingLists/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -60,7 +57,7 @@ namespace WeeklyPlaner
         }
 
         // POST: ShoppingLists/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

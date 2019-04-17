@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WeeklyPlaner.DAL;
 using WeeklyPlaner.DAL.Repositories;
 using WeeklyPlaner.Models;
 using WeeklyPlaner.ViewModels;
@@ -52,9 +48,9 @@ namespace WeeklyPlaner.Controllers
         }
 
         // POST: Meals/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from over posting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]        
+        [HttpPost]
         public ActionResult Create(MealViewModel mealViewModel)
         {
             if (ModelState.IsValid)
@@ -62,7 +58,7 @@ namespace WeeklyPlaner.Controllers
                 var meal = new Meal { Title = mealViewModel.Title };
 
                 unitOfWork.MealRepository.AddOrUpdateMealCourses(meal, mealViewModel.Courses);
-                
+
                 // Insert meal and set mealId for each mealItem
                 unitOfWork.MealRepository.Insert(meal);
                 mealViewModel.MealItems.ForEach(item => item.MealId = meal.ID);
@@ -100,7 +96,7 @@ namespace WeeklyPlaner.Controllers
         private ICollection<MealAssignedCourseData> PopulateMealAssignedCourseData(Meal meal)
         {
             var allCourses = unitOfWork.CourseRepository.Get();
-            var mealCourses = new HashSet<int>(meal.Courses.Select(c => c.ID));            
+            var mealCourses = new HashSet<int>(meal.Courses.Select(c => c.ID));
             var assignedCourses = new List<MealAssignedCourseData>();
 
             foreach (var item in allCourses)
@@ -130,13 +126,13 @@ namespace WeeklyPlaner.Controllers
             if (meal == null)
             {
                 return HttpNotFound();
-            }            
+            }
 
             return View(mealViewModel);
         }
 
         // POST: Meals/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from over posting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -145,7 +141,7 @@ namespace WeeklyPlaner.Controllers
             var meal = unitOfWork.MealRepository.GetByID(mealViewModel.ID);
 
             if (ModelState.IsValid)
-            {                                
+            {
                 unitOfWork.MealRepository.Update(meal);
 
                 unitOfWork.MealRepository.AddOrUpdateMealCourses(meal, mealViewModel.Courses);
@@ -181,7 +177,7 @@ namespace WeeklyPlaner.Controllers
             Meal meal = unitOfWork.MealRepository.GetByID(id);
             unitOfWork.MealRepository.Delete(meal);
             return RedirectToAction("Index");
-        }        
+        }
 
         // POST: Meals/UpdateMealCalories
         public ActionResult UpdateMealCalories(int mealId, int calories)

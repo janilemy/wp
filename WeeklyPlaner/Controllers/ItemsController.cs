@@ -1,35 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PagedList;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WeeklyPlaner.DAL;
-using WeeklyPlaner.Models;
-using PagedList;
 using WeeklyPlaner.DAL.Repositories;
+using WeeklyPlaner.Models;
 using WeeklyPlaner.ViewModels;
 
 namespace WeeklyPlaner.Controllers
-{    
+{
     public class ItemsController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         private WeeklyPlanerContext db = new WeeklyPlanerContext();
         public const int pageSize = 25;
 
-        // GET: Items        
+        // GET: Items
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             // must be included in the paging links in order to keep the sort order while paging
             ViewBag.CurrentSort = sortOrder;
             ViewBag.CategorySortParm = sortOrder == "Category" ? "category_desc" : "Category";
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";            
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             var item = db.Item.Include(i => i.ItemCategory);
 
-            // in order to maintain the filter settings during paging, we need to include the value and restored to the textbox when page is redisplayed
+            // in order to maintain the filter settings during paging, we need to include the value and restored to the text box when page is redisplayed
             if(searchString != null)
             {
                 page = 1;
@@ -63,14 +61,14 @@ namespace WeeklyPlaner.Controllers
                     item = item.OrderBy(i => i.Name);
                     break;
             }
-            
+
             int pageNumber = (page ?? 1);
 
             // ToPagedList extension method that converts list to single page list wich is passed to the view
             return View(item.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Items/Details/5    
+        // GET: Items/Details/5
         // Changed with attribute routing to Item/5
         [Route("Item/{id:int}")]
         public ActionResult Details(int? id)
@@ -87,7 +85,7 @@ namespace WeeklyPlaner.Controllers
             return View(item);
         }
 
-        // GET: Items/Create        
+        // GET: Items/Create
         public ActionResult Create()
         {
             ViewBag.ItemCategoryId = new SelectList(db.ItemCategory, "ID", "Category");
@@ -95,7 +93,7 @@ namespace WeeklyPlaner.Controllers
         }
 
         // POST: Items/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from over posting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -103,7 +101,7 @@ namespace WeeklyPlaner.Controllers
         {
                 if (ModelState.IsValid)
                 {
-                    unitOfWork.ItemRepository.InsertItemWithAdditionalInfo(itemViewModel);                    
+                    //unitOfWork.ItemRepository.InsertItemWithAdditionalInfo(itemViewModel);
                     return RedirectToAction("Index");
                 }
 
@@ -111,7 +109,7 @@ namespace WeeklyPlaner.Controllers
                 return View(itemViewModel);
         }
 
-        // GET: Items/Edit/5 
+        // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -130,7 +128,7 @@ namespace WeeklyPlaner.Controllers
         }
 
         // POST: Items/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from over posting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -172,16 +170,16 @@ namespace WeeklyPlaner.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Item itemToDelete = new Item() { ID = id };
-            db.Entry(itemToDelete).State = EntityState.Deleted;            
+            db.Entry(itemToDelete).State = EntityState.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
-        public JsonResult AutocompleteItems(string searchString)
-        {
-            var result = unitOfWork.ItemRepository.Get(i => i.Name.StartsWith(searchString)).Select(i => new { id = i.ID, value = i.Name }).ToList();
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+
+        //public JsonResult AutocompleteItems(string searchString)
+        //{
+        //    var result = unitOfWork.ItemRepository.Get(i => i.Name.StartsWith(searchString)).Select(i => new { id = i.ID, value = i.Name }).ToList();
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
 
         public JsonResult AutocompleteUnits(string searchString)
         {

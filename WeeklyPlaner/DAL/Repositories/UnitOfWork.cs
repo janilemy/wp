@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using WeeklyPlaner.Models;
 
 namespace WeeklyPlaner.DAL.Repositories
@@ -10,7 +7,7 @@ namespace WeeklyPlaner.DAL.Repositories
     {
         WeeklyPlanerContext context = new WeeklyPlanerContext();
         private MealRepository mealRepository;
-        private ItemRepository itemRepository;        
+        //private ItemRepository itemRepository;
         private GenericRepository<Unit> unitRepository;
         private GenericRepository<Planer> planerRepository;
         private GenericRepository<Course> courseRepository;
@@ -24,20 +21,20 @@ namespace WeeklyPlaner.DAL.Repositories
                     this.mealRepository = new MealRepository(context);
                 }
                 return mealRepository;
-            }            
-        }
-
-        public ItemRepository ItemRepository
-        {
-            get
-            {
-                if(this.itemRepository == null)
-                {
-                    this.itemRepository = new ItemRepository(context);
-                }
-                return itemRepository;
             }
         }
+
+        //public ItemRepository ItemRepository
+        //{
+        //    get
+        //    {
+        //        if(this.itemRepository == null)
+        //        {
+        //            this.itemRepository = new ItemRepository(context);
+        //        }
+        //        return itemRepository;
+        //    }
+        //}
 
         public GenericRepository<Unit> UnitRepository
         {

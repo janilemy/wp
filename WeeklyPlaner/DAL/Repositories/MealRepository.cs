@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using WeeklyPlaner.Models;
 using WeeklyPlaner.ViewModels;
 
@@ -16,7 +14,7 @@ namespace WeeklyPlaner.DAL.Repositories
         public void AddOrUpdateMealCourses(Meal meal, IEnumerable<MealAssignedCourseData> assignedMealCourses)
         {
             var mealCourses = new HashSet<int>(meal.Courses.Select(c => c.ID));
-            
+
             foreach(var mealCourse in assignedMealCourses)
             {
                 // check if meal course is checked
@@ -32,7 +30,7 @@ namespace WeeklyPlaner.DAL.Repositories
                 }
                 // remove meal course if exist
                 else
-                {                    
+                {
                     if (mealCourses.Contains(mealCourse.CourseID))
                     {
                         meal.Courses.Remove(context.Course.Find(mealCourse.CourseID));
@@ -40,9 +38,9 @@ namespace WeeklyPlaner.DAL.Repositories
                 }
             }
 
-            context.SaveChanges();           
+            context.SaveChanges();
         }
-        
+
         public void UpdateMealCalories(int mealId, int calories)
         {
             var meal = context.Meal.Find(mealId);
@@ -71,7 +69,7 @@ namespace WeeklyPlaner.DAL.Repositories
         }
 
         internal void InsertMealPreparation(MealPreparation mealPreparation)
-        {            
+        {
             context.MealPreparation.Add(mealPreparation);
             context.SaveChanges();
         }

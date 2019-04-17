@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace WeeklyPlaner.Models
 {
@@ -24,12 +21,12 @@ namespace WeeklyPlaner.Models
             Courses = new List<Course>();
         }
 
-        public virtual MealPreparation MealPreparation { get; set; }    
+        public virtual MealPreparation MealPreparation { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
         public virtual MealAdditionalInfo MealAdditionalInfo { get; set; }
 
         [Display(Name="Sestavine")]
-        public virtual ICollection<MealItem> MealItem { get; set; }        
+        public virtual ICollection<MealItem> MealItem { get; set; }
         public virtual ICollection<Planer> Planer { get; set; }
     }
 
@@ -70,13 +67,13 @@ namespace WeeklyPlaner.Models
 
         public virtual Meal Meal { get; set; }
         public virtual Unit Unit { get; set; }
-        public virtual Item Item { get; set; }         
+        public virtual Item Item { get; set; }
     }
 
     public class MealPreparation
     {
         [ForeignKey("Meal")]
-        public int ID { get; set; }        
+        public int ID { get; set; }
         public int? ActivePreparationTime { get; set; }
         public int? PasivePreparationTime { get; set; }
         [Display(Name= "Postopek")]
@@ -94,5 +91,5 @@ namespace WeeklyPlaner.Models
         public double Quantity { get; set; }
     }
 
-    
+
 }

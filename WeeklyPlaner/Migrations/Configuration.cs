@@ -1,12 +1,12 @@
+Ôªøusing System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using WeeklyPlaner.Models;
+
 namespace WeeklyPlaner.Migrations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using WeeklyPlaner.Models;
-
     internal sealed class Configuration : DbMigrationsConfiguration<WeeklyPlaner.DAL.WeeklyPlanerContext>
     {
         public Configuration()
@@ -18,7 +18,7 @@ namespace WeeklyPlaner.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data. E.g.
             //
             //    context.People.AddOrUpdate(
@@ -28,6 +28,7 @@ namespace WeeklyPlaner.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
             // Set default courses
             var courses = new List<Course>
             {
@@ -37,7 +38,7 @@ namespace WeeklyPlaner.Migrations
                 new Course { ID = 4, Title="Malica, popoldanska" },
                 new Course { ID = 5, Title="Pred treningom" },
                 new Course { ID = 6, Title="Po treningu" },
-                new Course { ID = 7, Title="VeËerja" },
+                new Course { ID = 7, Title="Veƒçerja" },
             };
 
             courses.ForEach(c => context.Course.AddOrUpdate(c));
@@ -45,8 +46,8 @@ namespace WeeklyPlaner.Migrations
 
             var unitTypes = new List<UnitType>
             {
-                new UnitType { ID = 1, Title="TekoËine enote"},
-                new UnitType { ID = 2, Title="Teûinske enote"},
+                new UnitType { ID = 1, Title="Tekoƒçine enote"},
+                new UnitType { ID = 2, Title="Te≈æinske enote"},
                 new UnitType { ID = 3, Title="Ostale enote"}
             };
 
@@ -56,13 +57,13 @@ namespace WeeklyPlaner.Migrations
             var units = new List<Unit>
             {
                 new Unit { ID = 1, Symbol="ml", Name="Mililiter", UnitTypeId=1},
-                new Unit { ID = 2, Symbol="l", Name="Liter", UnitTypeId=1},                
+                new Unit { ID = 2, Symbol="l", Name="Liter", UnitTypeId=1},
                 new Unit { ID = 3, Symbol="mg", Name="Miligram", UnitTypeId=2},
                 new Unit { ID = 4, Symbol="g", Name="Gram", UnitTypeId=2},
                 new Unit { ID = 5, Symbol="dag", Name="Dekagram", UnitTypeId=2},
                 new Unit { ID = 6, Symbol="kg", Name="Kilogram", UnitTypeId=2},
                 new Unit { ID = 7, Symbol="kom", Name="Kos", UnitTypeId=3},
-                new Unit { ID = 8, Symbol="élica", Name="élica", UnitTypeId=3}
+                new Unit { ID = 8, Symbol="≈Ωlica", Name="≈Ωlica", UnitTypeId=3}
             };
 
             units.ForEach(u => context.Unit.AddOrUpdate(u));
@@ -75,16 +76,16 @@ namespace WeeklyPlaner.Migrations
                 new ItemCategory { ID = 2, Category="Zelenjava"},
                 new ItemCategory { ID = 3, Category="Meso" },
                 new ItemCategory { ID = 4, Category="Klobase" },
-                new ItemCategory { ID = 5, Category="MleËni izdelki" },
-                new ItemCategory { ID = 6, Category="Olja in maöËobe" },
-                new ItemCategory { ID = 7, Category="Testenine in kosmiËi" },                
-                new ItemCategory { ID = 8, Category="Kruh in kruöni izdelki" }, 
-                new ItemCategory { ID = 9, Category="Riû" },
-                new ItemCategory { ID = 10, Category="OreöËki" },
-                new ItemCategory { ID = 11, Category="ZaËimbe in zeliöËa" },
-                new ItemCategory { ID = 12, Category="PijaËe" },
+                new ItemCategory { ID = 5, Category="Mleƒçni izdelki" },
+                new ItemCategory { ID = 6, Category="Olja in ma≈°ƒçobe" },
+                new ItemCategory { ID = 7, Category="Testenine in kosmiƒçi" },
+                new ItemCategory { ID = 8, Category="Kruh in kru≈°ni izdelki" },
+                new ItemCategory { ID = 9, Category="Ri≈æ" },
+                new ItemCategory { ID = 10, Category="Ore≈°ƒçki" },
+                new ItemCategory { ID = 11, Category="Zaƒçimbe in zeli≈°ƒça" },
+                new ItemCategory { ID = 12, Category="Pijaƒçe" },
                 new ItemCategory { ID = 13, Category="Namazi" },
-                new ItemCategory { ID = 14, Category="»istila" }
+                new ItemCategory { ID = 14, Category="ƒçistila" }
             };
 
             itemCategories.ForEach(ic => context.ItemCategory.AddOrUpdate(ic));
@@ -102,39 +103,39 @@ namespace WeeklyPlaner.Migrations
                 new Item { ID = 7, ItemCategoryId=5, Name="Sir, edamec"},
                 new Item { ID = 8, ItemCategoryId=5, Name="Sir, gavda"},
                 new Item { ID = 9, ItemCategoryId=5, Name="Skuta, nepasirana light", Manufacturer="Spar"},
-                new Item { ID = 10, ItemCategoryId=8, Name="Ovseni kosmiËi"},
-                new Item { ID = 11, ItemCategoryId=3, Name="PiöËanec, prsa"},
+                new Item { ID = 10, ItemCategoryId=8, Name="Ovseni kosmiƒçi"},
+                new Item { ID = 11, ItemCategoryId=3, Name="Pi≈°ƒçanec, prsa"},
                 new Item { ID = 12, ItemCategoryId=3, Name="Puran, prsa"},
                 new Item { ID = 13, ItemCategoryId=3, Name="Govedina, mleta"},
                 new Item { ID = 14, ItemCategoryId=2, Name="Brokoli"},
-                new Item { ID = 15, ItemCategoryId=2, Name="CvetaËa"},
+                new Item { ID = 15, ItemCategoryId=2, Name="Cvetaƒça"},
                 new Item { ID = 16, ItemCategoryId=2, Name="Kumara"},
                 new Item { ID = 17, ItemCategoryId=2, Name="Grah"},
                 new Item { ID = 18, ItemCategoryId=2, Name="Krompir"},
-                new Item { ID = 19, ItemCategoryId=2, Name="äpinaËa"},
-                new Item { ID = 20, ItemCategoryId=2, Name="BuËka"},
+                new Item { ID = 19, ItemCategoryId=2, Name="≈†pinaƒça"},
+                new Item { ID = 20, ItemCategoryId=2, Name="Buƒçka"},
                 new Item { ID = 21, ItemCategoryId=2, Name="Korenje"},
                 new Item { ID = 22, ItemCategoryId=10, Name="Mandlji"},
-                new Item { ID = 23, ItemCategoryId=10, Name="Leöniki"},
+                new Item { ID = 23, ItemCategoryId=10, Name="Le≈°niki"},
                 new Item { ID = 24, ItemCategoryId=10, Name="Makadamija"},
                 new Item { ID = 25, ItemCategoryId=10, Name="Pistacija"},
-                new Item { ID = 26, ItemCategoryId=10, Name="Araöidi"},
-                new Item { ID = 27, ItemCategoryId=2, Name="Fiûol, Ërni"},
-                new Item { ID = 28, ItemCategoryId=2, Name="Fiûol, beli"},
-                new Item { ID = 29, ItemCategoryId=2, Name="Fiûol, rumeni"},
-                new Item { ID = 30, ItemCategoryId=2, Name="»iËerika"},
-                new Item { ID = 31, ItemCategoryId=2, Name="Araöidovo maslo", Manufacturer="Roks"},
+                new Item { ID = 26, ItemCategoryId=10, Name="Ara≈°idi"},
+                new Item { ID = 27, ItemCategoryId=2, Name="Fi≈æol, ƒçrni"},
+                new Item { ID = 28, ItemCategoryId=2, Name="Fi≈æol, beli"},
+                new Item { ID = 29, ItemCategoryId=2, Name="Fi≈æol, rumeni"},
+                new Item { ID = 30, ItemCategoryId=2, Name="ƒçiƒçerika"},
+                new Item { ID = 31, ItemCategoryId=2, Name="Ara≈°idovo maslo", Manufacturer="Roks"},
                 new Item { ID = 32, ItemCategoryId=7, Name="Tortilije, koruzne"},
-                new Item { ID = 33, ItemCategoryId=7, Name="Kruh, rûeni"},
-                new Item { ID = 34, ItemCategoryId=9, Name="Riû, rjav"},
-                new Item { ID = 35, ItemCategoryId=9, Name="Riû, beli"},
+                new Item { ID = 33, ItemCategoryId=7, Name="Kruh, r≈æeni"},
+                new Item { ID = 34, ItemCategoryId=9, Name="Ri≈æ, rjav"},
+                new Item { ID = 35, ItemCategoryId=9, Name="Ri≈æ, beli"},
                 new Item { ID = 36, ItemCategoryId=7, Name="Makaroni, polnozrnati"},
-                new Item { ID = 37, ItemCategoryId=7, Name="äpageti, polnozrnati"},
+                new Item { ID = 37, ItemCategoryId=7, Name="≈†pageti, polnozrnati"},
                 new Item { ID = 38, ItemCategoryId=4, Name="Slanina, prekajena" },
-                new Item { ID = 39, ItemCategoryId=2, Name="»ebula"},
-                new Item { ID = 40, ItemCategoryId=2, Name="»esen"},
+                new Item { ID = 39, ItemCategoryId=2, Name="ƒçebula"},
+                new Item { ID = 40, ItemCategoryId=2, Name="ƒçesen"},
                 new Item { ID = 41, ItemCategoryId=2, Name="Paprika, zelena"},
-                new Item { ID = 42, ItemCategoryId=2, Name="Paprika, rdeËa"},
+                new Item { ID = 42, ItemCategoryId=2, Name="Paprika, rdeƒça"},
                 new Item { ID = 43, ItemCategoryId=2, Name="Paprika, rumena"},
                 new Item { ID = 44, ItemCategoryId=2, Name="Pelati"},
                 new Item { ID = 45, ItemCategoryId=11, Name="Sol"},
@@ -144,10 +145,10 @@ namespace WeeklyPlaner.Migrations
                 new Item { ID = 49, ItemCategoryId=11, Name="Bazilika"},
                 new Item { ID = 50, ItemCategoryId=11, Name="Majaron"},
                 new Item { ID = 51, ItemCategoryId=11, Name="Lovorjev list"},
-                new Item { ID = 52, ItemCategoryId=2, Name="Kokoöja kocka"},
+                new Item { ID = 52, ItemCategoryId=2, Name="Koko≈°ja kocka"},
                 new Item { ID = 53, ItemCategoryId=5, Name="Smetana za kuhanje"},
-                new Item { ID = 54, ItemCategoryId=6, Name="Olje, araöidovo"},
-                new Item { ID = 55, ItemCategoryId=2, Name="Meöanica za gobovo omako, Knorr Fix"},
+                new Item { ID = 54, ItemCategoryId=6, Name="Olje, ara≈°idovo"},
+                new Item { ID = 55, ItemCategoryId=2, Name="Me≈°anica za gobovo omako, Knorr Fix"},
                 new Item { ID = 56, ItemCategoryId=3, Name="Govedina, zrezki"},
                 new Item { ID = 57, ItemCategoryId=2, Name="Grah, korenje"}
                 //new Item { ID = , ItemCategoryId=, Name="" }
@@ -210,23 +211,23 @@ namespace WeeklyPlaner.Migrations
             var meals = new List<Meal>
             {
                 new Meal { ID=1, UserID=1, Title="Omleta", ImagePath="~/Content/Images/Meals/1.jpg" },
-                new Meal { ID=2, UserID=1, Title="Ovseni kosmiËi z borovnicami in banano", ImagePath="~/Content/Images/Meals/2.jpg"},
-                new Meal { ID=3, UserID=1, Title="äpageti bolognese", ImagePath="~/Content/Images/Meals/3.jpg"},
-                new Meal { ID=4, UserID=1, Title="Tortilije s piöËanËjim mesom", ImagePath="~/Content/Images/Meals/4.jpg"},
-                new Meal { ID=5, UserID=1, Title="Riûota s piöËanËjim mesom"},
-                new Meal { ID=6, UserID=1, Title="Toast, piöËanËje prsi, skutin namaz", ImagePath="~/Content/Images/Meals/6.jpg"},
-                new Meal { ID=7, UserID=1, Title="OreöËki, pest"},
-                new Meal { ID=8, UserID=1, Title="Gröki jogurt, jabolka, cimet in oreöËki"},
-                new Meal { ID=9, UserID=1, Title="»okolino fitness in whey", ImagePath="~/Content/Images/Meals/9.jpg"},
-                new Meal { ID=10, UserID=1, Title="Makaroni s piöËanËjim mesom", ImagePath="~/Content/Images/Meals/10.jpg"},
-                new Meal { ID=11, UserID=1, Title="PiöËanËji ragu z grahom", ImagePath="~/Content/Images/Meals/11.jpg"},
+                new Meal { ID=2, UserID=1, Title="Ovseni kosmiƒçi z borovnicami in banano", ImagePath="~/Content/Images/Meals/2.jpg"},
+                new Meal { ID=3, UserID=1, Title="≈†pageti bolognese", ImagePath="~/Content/Images/Meals/3.jpg"},
+                new Meal { ID=4, UserID=1, Title="Tortilije s pi≈°ƒçanƒçjim mesom", ImagePath="~/Content/Images/Meals/4.jpg"},
+                new Meal { ID=5, UserID=1, Title="Ri≈æota s pi≈°ƒçanƒçjim mesom"},
+                new Meal { ID=6, UserID=1, Title="Toast, pi≈°ƒçanƒçje prsi, skutin namaz", ImagePath="~/Content/Images/Meals/6.jpg"},
+                new Meal { ID=7, UserID=1, Title="Ore≈°ƒçki, pest"},
+                new Meal { ID=8, UserID=1, Title="Gr≈°ki jogurt, jabolka, cimet in ore≈°ƒçki"},
+                new Meal { ID=9, UserID=1, Title="ƒçokolino fitness in whey", ImagePath="~/Content/Images/Meals/9.jpg"},
+                new Meal { ID=10, UserID=1, Title="Makaroni s pi≈°ƒçanƒçjim mesom", ImagePath="~/Content/Images/Meals/10.jpg"},
+                new Meal { ID=11, UserID=1, Title="Pi≈°ƒçanƒçji ragu z grahom", ImagePath="~/Content/Images/Meals/11.jpg"},
 
-                // Sestavine öe niso dodeljene
-                new Meal { ID=12, UserID=1, Title="PiöËanËje prsi v curry omaki", ImagePath="~/Content/Images/Meals/12.jpg"},
-                new Meal { ID=13, UserID=1, Title="PiöËanËje prsi v nacho omaki", ImagePath="~/Content/Images/Meals/13.jpg"},
-                new Meal { ID=14, UserID=1, Title="PiöËanËje prsi v naravni omaki", ImagePath="~/Content/Images/Meals/14.jpg"},
-                new Meal { ID=15, UserID=1, Title="PiöËanËje prsi v sirovi omaki", ImagePath="~/Content/Images/Meals/15.jpg"},
-                new Meal { ID=16, UserID=1, Title="SendviË z piöËanËjo posebno in sirom", ImagePath="~/Content/Images/Meals/16.jpg"}
+                // Sestavine ≈°e niso dodeljene
+                new Meal { ID=12, UserID=1, Title="Pi≈°ƒçanƒçje prsi v curry omaki", ImagePath="~/Content/Images/Meals/12.jpg"},
+                new Meal { ID=13, UserID=1, Title="Pi≈°ƒçanƒçje prsi v nacho omaki", ImagePath="~/Content/Images/Meals/13.jpg"},
+                new Meal { ID=14, UserID=1, Title="Pi≈°ƒçanƒçje prsi v naravni omaki", ImagePath="~/Content/Images/Meals/14.jpg"},
+                new Meal { ID=15, UserID=1, Title="Pi≈°ƒçanƒçje prsi v sirovi omaki", ImagePath="~/Content/Images/Meals/15.jpg"},
+                new Meal { ID=16, UserID=1, Title="Sendviƒç z pi≈°ƒçanƒçjo posebno in sirom", ImagePath="~/Content/Images/Meals/16.jpg"}
                 //new Meal { ID=, UserID=1, Title="", ImagePath="~/Content/Images/Meals/12.jpg"}
             };
 
@@ -235,7 +236,7 @@ namespace WeeklyPlaner.Migrations
 
             // Set default meal items
             var mealItems = new List<MealItem>
-            {                
+            {
                 new MealItem { ID=1, MealId=2, ItemId=1, UnitId=4, Quantity=200 },
                 new MealItem { ID=2, MealId=2, ItemId=3, UnitId=4, Quantity=30 },
                 new MealItem { ID=3, MealId=2, ItemId=10, UnitId=4, Quantity=50 },
@@ -256,13 +257,13 @@ namespace WeeklyPlaner.Migrations
                 new MealItem { ID=18, MealId=10, ItemId=50 },
                 new MealItem { ID=19, MealId=10, ItemId=51 },
                 new MealItem { ID=20, MealId=11, ItemId=11, UnitId=4, Quantity=400 },
-                new MealItem { ID=20, MealId=11, ItemId=52, UnitId=7, Quantity=1 },       
-                new MealItem { ID=20, MealId=11, ItemId=55, UnitId=7, Quantity=1},       
+                new MealItem { ID=20, MealId=11, ItemId=52, UnitId=7, Quantity=1 },
+                new MealItem { ID=20, MealId=11, ItemId=55, UnitId=7, Quantity=1},
                 new MealItem { ID=20, MealId=11, ItemId=17, UnitId=4, Quantity=200 },
                 new MealItem { ID=20, MealId=11, ItemId=53, UnitId=1, Quantity=100 },
                 new MealItem { ID=20, MealId=11, ItemId=54, UnitId=8, Quantity=2 },
                 new MealItem { ID=20, MealId=11, ItemId=39, UnitId=4, Quantity=60 },
-                new MealItem { ID=20, MealId=11, ItemId=49 },                                          
+                new MealItem { ID=20, MealId=11, ItemId=49 },
                 //new MealItem { ID=, MealId=, ItemId=, UnitId=, Quantity= }
             };
 
@@ -271,10 +272,10 @@ namespace WeeklyPlaner.Migrations
 
             var mealPreparation = new List<MealPreparation>
             {
-                new MealPreparation { ID=10, Preparation="PiöËanËje fileje nareûemo na kocke in jih na vroËem olju popraûimo. Dodamo sol, poper, malo vegete, lovorov list in timijan. Meso shranimo na toplem. Na istem olju prepraûimo Ëebulo in Ëesen ter dodamo na kocke narezano rdeËo papriko, ponovno malo posolimo. Meso vrnemo v ponev k ostalim sestavinam in praûimo, dokler paprika ni mehka. Nato dodamo paradiûnikovo omako ter origano in baziliko (ostale zaËimbe po potrebi) in kuhamo na zmernem ognju öe 15 minut. Vmes skuhamo makarone, po navodilih iz embalaûe, oziroma po okusu."},
-                new MealPreparation { ID=11, Preparation="Na vroËem olju prepraûimo sesekljano Ëebulo. PiöËanËje prsi nareûemo na kocke. Gobe oËistimo in nareûemo na primerne manjöe kose. Meso in gobe dodamo k Ëebuli ter zaËinimo s Knorr kokoöjo kocko in praûimo 2-3 minuti. Dodamo grah.Knorr Fix meöanico zmeöamo z 2 dl vode in smetano. Dodamo k raguju in kuhamo 10 minut. Dodamo sveûe narezano baziliko in poper po okusu."},
-                new MealPreparation { ID=12, Preparation="Pripravimo si piöËanËje prsi narezane na kocke, smetano za kuhanje, curry zaËimbo, poper, zaËimbo za piöËanËje meso. V posodo damo malo olja in popeËemo meso, ki ga zaËinimo z zaËimbo za meso in poprom. Ko je meso peËeno ga zalijemo z malo vode, ki jo zaËinimo z curry zaËimbo in pustimo öe pustimo nekaj minut vret. Nato po potrebi öe dodamo vodo, ali pa kar dodamo smetano za kuhanje in öe po potrebi zaËinimo z curryjem in poprom. Ko se omaka malo zgosti je jed gotova."},
-                new MealPreparation { ID=13, Preparation="Pripravimo si piöËanËje prsi narezane na kocke, smetano za kuhanje, nacho sir, poper, zaËimbo za piöËanËje meso. V posodo damo malo olja in popeËemo meso, ki ga zaËinimo z zaËimbo za meso in poprom. Ko je meso peËeno ga zalijemo z malo vode in pustimo öe pustimo nekaj minut vret. Nato po potrebi öe dodamo vodo, ali pa kar dodamo smetano za kuhanje, nacho sir in poper. Omako öe nekaj minut meöamo, ko se omaka zgosti je jed gotova."}
+                new MealPreparation { ID=10, Preparation="Pi≈°ƒçanƒçje fileje nare≈æemo na kocke in jih na vroƒçem olju popra≈æimo. Dodamo sol, poper, malo vegete, lovorov list in timijan. Meso shranimo na toplem. Na istem olju prepra≈æimo ƒçebulo in ƒçesen ter dodamo na kocke narezano rdeƒço papriko, ponovno malo posolimo. Meso vrnemo v ponev k ostalim sestavinam in pra≈æimo, dokler paprika ni mehka. Nato dodamo paradi≈ænikovo omako ter origano in baziliko (ostale zaƒçimbe po potrebi) in kuhamo na zmernem ognju ≈°e 15 minut. Vmes skuhamo makarone, po navodilih iz embala≈æe, oziroma po okusu."},
+                new MealPreparation { ID=11, Preparation="Na vroƒçem olju prepra≈æimo sesekljano ƒçebulo. Pi≈°ƒçanƒçje prsi nare≈æemo na kocke. Gobe oƒçistimo in nare≈æemo na primerne manj≈°e kose. Meso in gobe dodamo k ƒçebuli ter zaƒçinimo s Knorr koko≈°jo kocko in pra≈æimo 2-3 minuti. Dodamo grah.Knorr Fix me≈°anico zme≈°amo z 2 dl vode in smetano. Dodamo k raguju in kuhamo 10 minut. Dodamo sve≈æe narezano baziliko in poper po okusu."},
+                new MealPreparation { ID=12, Preparation="Pripravimo si pi≈°ƒçanƒçje prsi narezane na kocke, smetano za kuhanje, curry zaƒçimbo, poper, zaƒçimbo za pi≈°ƒçanƒçje meso. V posodo damo malo olja in popeƒçemo meso, ki ga zaƒçinimo z zaƒçimbo za meso in poprom. Ko je meso peƒçeno ga zalijemo z malo vode, ki jo zaƒçinimo z curry zaƒçimbo in pustimo ≈°e pustimo nekaj minut vret. Nato po potrebi ≈°e dodamo vodo, ali pa kar dodamo smetano za kuhanje in ≈°e po potrebi zaƒçinimo z curryjem in poprom. Ko se omaka malo zgosti je jed gotova."},
+                new MealPreparation { ID=13, Preparation="Pripravimo si pi≈°ƒçanƒçje prsi narezane na kocke, smetano za kuhanje, nacho sir, poper, zaƒçimbo za pi≈°ƒçanƒçje meso. V posodo damo malo olja in popeƒçemo meso, ki ga zaƒçinimo z zaƒçimbo za meso in poprom. Ko je meso peƒçeno ga zalijemo z malo vode in pustimo ≈°e pustimo nekaj minut vret. Nato po potrebi ≈°e dodamo vodo, ali pa kar dodamo smetano za kuhanje, nacho sir in poper. Omako ≈°e nekaj minut me≈°amo, ko se omaka zgosti je jed gotova."}
             };
 
             mealPreparation.ForEach(mp => context.MealPreparation.AddOrUpdate(mp));
@@ -307,27 +308,27 @@ namespace WeeklyPlaner.Migrations
 
             var planerMeals = new List<PlanerMeals>
             {
-                new PlanerMeals { PlanerMealsId=1, PlanerId=1, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerMealsId=2, PlanerId=1, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=1, PlanerId=1, MealId=1, CourseId=1 },
+                new PlanerMeals { PlanerMealsId=2, PlanerId=1, MealId=2, CourseId=1 },
                 new PlanerMeals { PlanerMealsId=3, PlanerId=1, MealId=10, CourseId=3 },
                 new PlanerMeals { PlanerMealsId=4, PlanerId=1, MealId=6, CourseId=4 },
                 //new PlanerMeals { PlanerMealsId=5, PlanerId=1, MealId=9, CourseId=6 },
                 new PlanerMeals { PlanerMealsId=5, PlanerId=1, MealId=10, CourseId=7 },
-                new PlanerMeals { PlanerMealsId=6, PlanerId=2, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerMealsId=7, PlanerId=2, MealId=2, CourseId=1 },                
+                new PlanerMeals { PlanerMealsId=6, PlanerId=2, MealId=1, CourseId=1 },
+                new PlanerMeals { PlanerMealsId=7, PlanerId=2, MealId=2, CourseId=1 },
                 new PlanerMeals { PlanerMealsId=8, PlanerId=2, MealId=3, CourseId=3 },
                 new PlanerMeals { PlanerMealsId=9, PlanerId=2, MealId=6, CourseId=4 },
                 //new PlanerMeals { PlanerMealsId=11, PlanerId=2, MealId=9, CourseId=6 },
                 new PlanerMeals { PlanerMealsId=10, PlanerId=2, MealId=3, CourseId=7 },
-                new PlanerMeals { PlanerMealsId=11, PlanerId=3, MealId=1, CourseId=1 },    
-                new PlanerMeals { PlanerMealsId=12, PlanerId=3, MealId=2, CourseId=1 },                
-                new PlanerMeals { PlanerMealsId=13, PlanerId=3, MealId=11, CourseId=3 },                
+                new PlanerMeals { PlanerMealsId=11, PlanerId=3, MealId=1, CourseId=1 },
+                new PlanerMeals { PlanerMealsId=12, PlanerId=3, MealId=2, CourseId=1 },
+                new PlanerMeals { PlanerMealsId=13, PlanerId=3, MealId=11, CourseId=3 },
                 new PlanerMeals { PlanerMealsId=14, PlanerId=3, MealId=11, CourseId=5 },
                 new PlanerMeals { PlanerMealsId=15, PlanerId=3, MealId=6, CourseId=7 },
                 new PlanerMeals { PlanerMealsId=16, PlanerId=4, MealId=1, CourseId=1 },
                 new PlanerMeals { PlanerMealsId=16, PlanerId=4, MealId=16, CourseId=3 },
                 new PlanerMeals { PlanerMealsId=16, PlanerId=4, MealId=12, CourseId=4 }
-                
+
             };
 
             planerMeals.ForEach(pm => context.PlanerMeals.AddOrUpdate(pm));
@@ -338,7 +339,7 @@ namespace WeeklyPlaner.Migrations
 
             List<ShoppingListItem> secondShoppingListItems = new List<ShoppingListItem>();
             firstShoppingListItems.Add(new ShoppingListItem { ID = 1, ShoppingListId = 2, ItemId = 3, Quantity = 125, UnitId = 4 });
-            firstShoppingListItems.Add(new ShoppingListItem { ID = 2, ShoppingListId=2, ItemId = 4, Quantity = 12, UnitId = 7 });
+            firstShoppingListItems.Add(new ShoppingListItem { ID = 2, ShoppingListId = 2, ItemId = 4, Quantity = 12, UnitId = 7 });
             firstShoppingListItems.Add(new ShoppingListItem { ID = 3, ShoppingListId = 2, ItemId = 55, Quantity = 500, UnitId = 4 });
             firstShoppingListItems.Add(new ShoppingListItem { ID = 4, ShoppingListId = 2, ItemId = 56, Quantity = 500, UnitId = 4 });
             firstShoppingListItems.Add(new ShoppingListItem { ID = 5, ShoppingListId = 2, ItemId = 38, Quantity = 300, UnitId = 4 });

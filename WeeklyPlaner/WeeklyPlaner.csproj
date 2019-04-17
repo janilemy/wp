@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,9 +122,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -132,7 +131,6 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\MealsController.cs" />
     <Compile Include="DAL\Repositories\GenericRepository.cs" />
-    <Compile Include="DAL\Repositories\ItemRepository.cs" />
     <Compile Include="DAL\Repositories\MealRepository.cs" />
     <Compile Include="DAL\Repositories\UnitOfWork.cs" />
     <Compile Include="DAL\WeeklyPlanerContext.cs" />
@@ -145,25 +143,9 @@
     </Compile>
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Migrations\201601041035175_InitialCreate.cs" />
-    <Compile Include="Migrations\201601041035175_InitialCreate.Designer.cs">
-      <DependentUpon>201601041035175_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601041040411_AddMealPreparation.cs" />
-    <Compile Include="Migrations\201601041040411_AddMealPreparation.Designer.cs">
-      <DependentUpon>201601041040411_AddMealPreparation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601041048351_SeparateMealPreparation.cs" />
-    <Compile Include="Migrations\201601041048351_SeparateMealPreparation.Designer.cs">
-      <DependentUpon>201601041048351_SeparateMealPreparation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601061132578_AddImagePathToMeal.cs" />
-    <Compile Include="Migrations\201601061132578_AddImagePathToMeal.Designer.cs">
-      <DependentUpon>201601061132578_AddImagePathToMeal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601062325004_AddShoppingListData.cs" />
-    <Compile Include="Migrations\201601062325004_AddShoppingListData.Designer.cs">
-      <DependentUpon>201601062325004_AddShoppingListData.cs</DependentUpon>
+    <Compile Include="Migrations\201904171246343_InitialCreate.cs" />
+    <Compile Include="Migrations\201904171246343_InitialCreate.Designer.cs">
+      <DependentUpon>201904171246343_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Item.cs" />
@@ -206,7 +188,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\Meals\11.png" />
     <Content Include="Content\Images\Meals\10.JPG" />
     <Content Include="Content\Images\Meals\11.JPG" />
     <Content Include="Content\Images\Meals\1.jpg" />
@@ -222,20 +203,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EmbeddedResource Include="Migrations\201601041035175_InitialCreate.resx">
-      <DependentUpon>201601041035175_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601041040411_AddMealPreparation.resx">
-      <DependentUpon>201601041040411_AddMealPreparation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601041048351_SeparateMealPreparation.resx">
-      <DependentUpon>201601041048351_SeparateMealPreparation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601061132578_AddImagePathToMeal.resx">
-      <DependentUpon>201601061132578_AddImagePathToMeal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601062325004_AddShoppingListData.resx">
-      <DependentUpon>201601062325004_AddShoppingListData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904171246343_InitialCreate.resx">
+      <DependentUpon>201904171246343_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Views\Home\Home.sl.resx" />
     <EmbeddedResource Include="Resources\Views\Items\Items.sl.resx">
